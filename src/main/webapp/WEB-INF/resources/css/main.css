@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/* basic bootstrap setting */
+body {  margin: 0;  font-family: Arial, Helvetica, sans-serif;}
+.topnav {  overflow: hidden;  background-color: #333;}
+.topnav a {min-width: 100px;  float: left;  color: #f2f2f2;  text-align: center;  padding: 14px;  text-decoration: none;  font-size: 17px;}
+.topnav a:hover {  background-color: #ddd;  color: black;}
+.topnav a.active {  background-color: #f6b63c;  color: white;}
+
+/* top영역 */
+.top{position: fixed;    width: 100%;}
+.topDiv{background-color: #333333;color: white;}
+.topDiv classNm{font-size: 22px;}
+.topTitle{padding: 10px;}
+.classNm{padding-left: 10px;}
+.fr{float: right}
+.fr *{padding: 5px;}
+
+.fl{float: left;}
+
+/* sideBar */
+.sidebar{
+  margin: 124px auto;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 10px 0px 10px 20px;
+  text-decoration: none;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.sidebar a.active {
+  background-color: #f6b63c;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* content영역 */
+.content{padding: 124px 0px 0 200px;}
+.content .main ul{	list-style: none;}
+.content .main ul li{float: left;padding: 35px 15px 35px 15px;}
+.imgWrapper{border: 1px solid #80808024;}
+.imgHead, .imgFoot{padding: 10px;}
+.imgTitle{cursor: pointer;}
+.checkYn{}
+.imgBody{cursor: pointer;}
+.imgFoot{}
+
+input[type=button]{    border: none;
+    /* border-radius: 5px; */
+    background: #f6b63c;
+    color: white;
+    font-size: 17px;
+    padding: 10px 20px 10px 20px;}
+
+.btnPd{padding: 15px 20px 47px 0;}
+.pd5{padding: 5px;}
+.pd10{padding: 10px;}
+.pd20{padding: 20px;}
+
+.contentView{width: 557px;margin: 0 auto;}
+.imgView{width:100%;}
+
+
+.formArea{width: 562px;    margin: 74px auto;}

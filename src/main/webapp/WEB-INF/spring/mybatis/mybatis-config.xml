@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//www.mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="memberVO" type="com.isaac.board.member.MemberVO"></typeAlias>
+		<typeAlias alias="boardVO" type="com.isaac.board.BoardVO"></typeAlias>
+	</typeAliases>
+	<plugins>
+		<plugin interceptor="com.isaac.board.interceptor.LogInterceptor"></plugin>
+	</plugins>
+
+</configuration>
