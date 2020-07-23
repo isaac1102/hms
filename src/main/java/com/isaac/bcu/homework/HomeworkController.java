@@ -1,5 +1,6 @@
 package com.isaac.bcu.homework;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,8 +11,14 @@ import com.isaac.board.BoardVO;
 @RequestMapping(value="/homework")
 public class HomeworkController {
 
+	@Autowired
+	HomeworkService service;
+
 	@RequestMapping(value="/main.do", method=RequestMethod.GET)
-	public String delete(BoardVO boardVO) {
+	public String delete(HomeworkVO homeworkVO) {
+		for(HomeworkVO vo : service.list(homeworkVO)) {
+			System.out.println(vo);
+		}
 		return "homework/main";
 	}
 

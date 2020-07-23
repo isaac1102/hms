@@ -11,11 +11,11 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-		<property name="username" value="scott"></property>
-		<property name="password" value="tiger"></property>
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://@localhost:3306/isaac_data?serverTimezone=Asia/Seoul"/>
+		<property name="username" value="root"></property>
+		<property name="password" value="system"></property>
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
