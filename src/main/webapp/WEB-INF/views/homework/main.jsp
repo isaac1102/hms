@@ -3,81 +3,85 @@
 <html>
 <head>
 <%@ include file="../include/header.jsp" %>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <title>부천대학교 과제관리 시스템</title>
-<style type="text/css">
-
-</style>
 </head>
 <body>
 <div class="top">
-	<div class="topDiv">
-		<div class="topTitle">
-			<img alt="부천대학교" src="/resources/images/bcu.logo.Black.png">
-			<span class="classNm">3급 3반 구다영 선생님반</span>
-			<div class="fr">
-				<span class="loginNm">환영합니다 구다영님</span>
-				<span class="link_logout">로그아웃</span>
-			</div>
-		</div>
-	</div>
-	<div class="topnav">
-	  <a class="active topBtn" href="#home">과제</a>
-	  <a class="topBtn" href="#contact">개인정보</a>
+	<div class="topnav" id="myTopnav">
+	  <a href="#home" onclick="js_list();" class="active">과제</a>
+	  <a href="#news">개인정보</a>
+	  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+	    <i class="fa fa-bars"></i>
+	  </a>
 	</div>
 </div>
-<div class="sidebar">
-	<a class="sidebar_btn" id="list">구다영</a>
+<div class="main">
+	<div id="mySidebar" class="sidebar">
+	    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+	    <a href="#" onclick="js_list();">구다영</a>
+	</div>
+	<div class="content"></div>
 </div>
-<div class="content" id="content">
-	<div class="main" id="main"></div>
-</div>
 
-<div style="padding-left:16px">
-</div>
-<script type="text/javascript">
-	js_ajax('list', '');
-
-	$('.sidebar_btn').click(function(){
-
-		var action = $(this).attr('id');
-
-		js_ajax(action);
-
+<script>
+	$(document).ready(function(){
+		$.ajax({
+			async: false,
+			url: 'list.do',
+			success:function(data){
+				$('.content').html(data);
+			}
+		});
 	});
 
-	function js_ajax(action){
+	var js_loadView = function(action){
 		$.ajax({
 			url: action + '.do',
 			success:function(data){
-				$('#main').html(data);
+				$('.content').html(data);
 			}
 		});
 	};
 
-	$('.topBtn').click(function(){
-		var existClass = $(this).attr('class');
-
-		$('.topBtn').attr('class', 'sidebar_btn');
-
-		if(existClass.includes('active')){
-			$(this).attr('class', 'topBtn');
-		}else{
-			$(this).attr('class', 'active topBtn');
-		}
-	});
-
-	var js_click = function(){
-		js_ajax('view');
+	var js_view = function(seq){
+		$.ajax({
+			url: 'view.do',
+			data:{
+				hwSeq : seq
+			},
+			success:function(data){
+				$('.content').html(data);
+			}
+		});
 	};
 
 	var js_list = function(){
-		js_ajax('list');
+		js_loadView('list');
 	};
 
 	var js_insert = function(){
-		js_ajax('form');
+		js_loadView('form');
 	};
 
+	function myFunction() {
+		var x = document.getElementById("myTopnav");
+		if (x.className === "topnav") {
+			x.className += " responsive";
+		} else {
+			x.className = "topnav";
+		}
+	}
+
+	function openNav() {
+		document.getElementById("mySidebar").style.width = "200px";
+		document.getElementById("openbtn").style.display = "none";
+	}
+
+	function closeNav() {
+		document.getElementById("mySidebar").style.width = "0";
+		document.getElementById("openbtn").style.display = "block";
+	}
 </script>
 
 </body>

@@ -16,4 +16,8 @@ public class HomeworkDao extends HomeworkService{
 		return sqlSession.selectList("_homework.list", hwVO);
 	}
 
+	public HomeworkVO view(HomeworkVO hwVO){
+		return sqlSession.selectOne("_homework.view", hwVO);
+	}
+
 }

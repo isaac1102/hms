@@ -1,29 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="btnPd">
-	<input type="button" class="fr" value="제출" onclick="js_insert();">
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<div class="topBtn">
+	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
+	<button class="formbtn fr" onclick="js_insert();"><i class="fa fa-pencil"></i></button>
 </div>
-<script type="text/javascript">
-	var html = '';
-
-	html += '<li>';
-	html += '<div class="imgWrapper">';
-	html += '<div class="imgHead">';
-	html += '<span class="imgTitle" onClick="js_click();">과제물입니다.</span>';
-	html += '<span class="fr">checked</span>';
-	html += '</div>';
-	html += '<div class="imgBody" onClick="js_click();">';
-	html += '<img src="http://placehold.it/350x350"/>';
-	html += '</div>';
-	html += '<div class="imgFoot">';
-	html += '<span>2020-07-19</span>';
-	html += '<span class="fr">something</span>';
-	html += '</div>';
-	html += '</div>';
-	html += '</li>';
-
-	for(var i = 0 ; i < 10; i++){
-		$('ul').append(html);
-	}
-</script>
-<ul>
-</ul>
+<div class="list">
+	<c:forEach var="item" items="${dataList}">
+			<div class="col-md-4 pb15">
+				<div class="card box-shadow" onClick="js_view(${item.hwSeq});">
+					<img class="card-img-top maxSize cusPoint" src="${item.fileUrl }"/>
+					<div class="imgFoot">
+						<div>
+							<span class="imgTitle" onClick="js_view(${item.hwSeq});">${item.title}</span>
+						</div>
+						<div class="text-muted">
+							<span class="">${item.regDt }</span>
+						</div>
+					</div>
+				</div>
+			</div>
+	</c:forEach>
+</div>

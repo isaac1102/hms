@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="btnPd">
-	<input type="button" class="fr" value="목록"  onclick="js_list();">
+<div class="topBtn">
+	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
+	<button class="formbtn fr" onclick="js_list();"><i class="fa fa-list-alt"></i></button>
 </div>
 <div class="contentView">
-	<div class="pd5">
-		과제물입니다.
+	<div class="imgWrapper customcard">
+		<img class="imgView" src="${dataView.fileUrl}"/>
 	</div>
-	<div class="fl">
-		<img class="imgView" src="http://placehold.it/350x350"/>
-		<div class="pd5">
-			<span>
-				2020-07-19 11:04
-			</span>
+	<div class="replyArea">
+		<div class="titleArea pd15">${dataView.title}</div>
+		<div class="feedBackDiv pd15">
+			<div>${dataView.reply }</div>
+			<span class="text-muted ftSz15 fr">${dataView.regDt }</span>
 		</div>
 	</div>
-	<div class="feedBackDiv fl pd10">
-		<div>선생님 답변</div>
-		<div>참 잘했어요</div>
+</div>
+<div class="btnArea">
+	<div class="btnPd">
+		<input type="button" class="fr" value="목록"  onclick="js_list();">
 	</div>
 </div>
