@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+html, body{height: 100%;}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -41,7 +43,13 @@ body {
   display: none;
 }
 
+
+
 @media screen and (max-width: 600px) {
+	.contentView{
+		margin: 0 auto;
+	    max-width: 1000px;
+	}
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
     float: right;
@@ -65,13 +73,39 @@ body {
   .sidebar .closebtn {display: block;}
 
   .row{padding: 16px;}
+
+  .dataForm{
+	border: 1px solid rgba(0,0,0,.125);
+	margin: 0 auto;
+	text-align: center;
+	width: 331px;
+    padding: 25px;
+    border-radius: 6px;
+	}
+	.imgView{max-width: 340px;}
+	.imgWrapper{width: 340px;margin: 0 auto}
 }
 
 @media screen and (min-width: 601px) {
-  .topBtn #openbtn{display: none;}
-  #mySidebar{width: 200px;}
-  .sidebar .closebtn {display: none;}
-  .content{padding-left: 230px;padding-right: 30px;}
+	.contentView{
+		border: 1px solid #f3f3f3;
+		margin: 0 auto;
+	    max-width: 1000px;
+	}
+	.topBtn #openbtn{display: none;}
+	#mySidebar{width: 200px;}
+	.sidebar .closebtn {display: none;}
+	.content{padding-left: 230px;padding-right: 30px;    padding-bottom: 30px;height: 100%;}
+	.dataForm{
+		border: 1px solid rgba(0,0,0,.125);
+		margin: 0 auto;
+		text-align: center;
+		width: 551px;
+		padding: 46px;
+		border-radius: 6px;
+	}
+	.imgView{max-width: 550px;}
+	.dis_flx{display: flex;}
 }
 
 
@@ -119,6 +153,8 @@ body {
   border: none;
 }
 
+
+
 .formbtn{
   font-size: 20px;
   cursor: pointer;
@@ -130,9 +166,15 @@ body {
 
 }
 
+.mgbt{margin-bottom: 2rem;}
+
 .openbtn:hover {
   background-color: #444;
 }
+
+.inputLabel{padding: 25px;
+    font-size: 35px;
+    font-weight: 600;}
 
 .topBtn {
     transition: margin-left .5s;
@@ -141,20 +183,20 @@ body {
 }
 
 .list{display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;padding: 15px;}
-.dis_flx{display: flex;}
+
 .cusPoint{cursor: pointer;}
 .checkYn{}
 .imgBody{cursor: pointer;}
 .imgBody img{width: 350px; height: 350px;}
 .imgFoot{padding: 13px;}
-.imgView{max-width: 550px;max-width: 500px;}
-.imgWrapper{margin: 0 auto;}
-.replyArea{min-width: 300px;}
+
+/*  */
+.replyArea{min-width: 300px;width: 100%;    padding: 10px;}
 
 .customcard{
 	position: relative;
     display: -ms-flexbox;
-    min-width: 0;
+    /* min-width: 0; */
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
@@ -175,6 +217,8 @@ body {
 .pd10{padding: 10px; }
 .pd15{padding: 15px; }
 .pd20{padding: 20px; }
+
+.pb15{padding-bottom: 15px;}
 .main{padding-top: 53px;}
 .fr{float: right;}
 .fl{float: left;}
