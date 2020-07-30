@@ -9,11 +9,15 @@ public class HomeworkService {
 	@Autowired
 	HomeworkDao dao;
 
-	public List<HomeworkVO> list(HomeworkVO homeworkVO){
-		return dao.list(homeworkVO);
+	public List<HomeworkVO> list(HomeworkVO hwVO){
+		return dao.list(hwVO);
 	}
 
-	public HomeworkVO view(HomeworkVO homeworkVO) {
-		return dao.view(homeworkVO);
+	public HomeworkVO view(HomeworkVO hwVO) {
+		return dao.view(hwVO);
+	}
+
+	public int insert(HomeworkVO hwVO) {
+		return dao.insert(hwVO);
 	}
 }

@@ -1,4 +1,4 @@
-package com.isaac.bcu.homework;
+package com.isaac.bcu.file;
 
 import java.util.List;
 
@@ -6,8 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.isaac.bcu.homework.HomeworkVO;
+
 @Repository
-public class HomeworkDao extends HomeworkService{
+public class FileDao{
 
 	@Autowired
 	SqlSession sqlSession;
@@ -20,7 +22,7 @@ public class HomeworkDao extends HomeworkService{
 		return sqlSession.selectOne("_homework.view", hwVO);
 	}
 
-	public int insert(HomeworkVO hwVO) {
-		return sqlSession.insert("_homework.insert", hwVO);
+	public int insert(FileVO fileVO) {
+		return sqlSession.insert("_file.insert", fileVO);
 	}
 }

@@ -1,10 +1,10 @@
 package com.isaac.bcu.homework;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 
 @Data
+@ToString
 public class HomeworkVO {
 
 	int hwSeq;
@@ -19,7 +19,7 @@ public class HomeworkVO {
 	String modiDt;
 	String regId;
 
-	@Override
+	/*@Override
 	public String toString() {
 		System.out.println("=============== parameter ===============");
 		System.out.println("hwSeq : " + this.hwSeq);
@@ -35,5 +35,5 @@ public class HomeworkVO {
 		System.out.println("modiDt : " + this.modiDt);
 		System.out.println("==========================================");
 		return super.toString();
-	}
+	}*/
 }
