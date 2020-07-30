@@ -25,6 +25,7 @@
 </div>
 
 <script>
+
 	$(document).ready(function(){
 		$.ajax({
 			async: false,
@@ -64,24 +65,47 @@
 		js_loadView('form');
 	};
 
-	function myFunction() {
+	var myFunction = function(){
 		var x = document.getElementById("myTopnav");
 		if (x.className === "topnav") {
 			x.className += " responsive";
 		} else {
 			x.className = "topnav";
 		}
-	}
+	};
 
-	function openNav() {
+	var openNav = function(){
 		document.getElementById("mySidebar").style.width = "200px";
 		document.getElementById("openbtn").style.display = "none";
-	}
+	};
 
-	function closeNav() {
+	var closeNav = function(){
 		document.getElementById("mySidebar").style.width = "0";
 		document.getElementById("openbtn").style.display = "block";
-	}
+	};
+
+	var js_submit = function(){
+
+		//Title validation
+		var title = $('#formGroupExampleInput').val();
+		var file = $('#exampleFormControlFile1').val();
+
+		if(title == ''){
+			alert('제목을 입력하세요.')
+		}
+
+		if(file == ''){
+			alert('파일을 업로드 하세요.');
+			return false;
+		}
+
+		$('.dataForm').attr('action', '/homework/insertAction.do');
+		$('.dataForm').submit();
+
+		//데이터 저장
+		//list.jsp로 이동
+
+	};
 </script>
 
 </body>
