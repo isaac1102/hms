@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class FileVO {
-
 	int fileSeq;
 	String filePath;
 	String fileId;

@@ -14,13 +14,13 @@
 			AND WRITER LIKE '%'||#{searchVal}||'%'
 		</if>
 	</sql> -->
-	<insert id="insert" parameterType="fileVO" >
+	<insert id="insert" parameterType="fileVO" useGeneratedKeys="true" keyProperty="fileSeq" >
 		INSERT INTO BCU_FILE(
-			FILE_PATH, FILE_ID, FILE_NM, FILE_URL,
-			ORDER_NO, FILE_SIZE, FILE_TYPE, HW_SEQ
+			FILE_PATH,  FILE_NM, FILE_URL,
+			ORDER_NO, FILE_SIZE, FILE_TYPE
 		) VALUES(
-			#{filePath}, #{fileId}, #{fileNm}, #{fileUrl},
-			#{orderNo}, #{fileSize}, #{fileType}, #{hwSeq}
+			#{filePath}, #{fileNm}, #{fileUrl},
+			#{orderNo}, #{fileSize}, #{fileType}
 		)
 	</insert>
 
