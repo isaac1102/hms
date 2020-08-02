@@ -104,7 +104,52 @@
 
 		//데이터 저장
 		//list.jsp로 이동
+		js_loadView('list');
+	};
 
+	var js_replyForm = function(hwSeq, exist){
+		if ( exist == undefined ){
+			var input = '';
+
+			input += '<form class="replyForm" method="post">';
+			input += 	'<input type="hidden" name="hwSeq" id="hwSeq">';
+			input += 	'<div class="form-group">';
+			input += 		'<textarea class="form-control" id="exampleFormControlTextarea1" name="reply" rows="5"></textarea>';
+			input += 	'</div>';
+
+			input += 	'<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_cancel();"><i class="fa fa-times"></i></button>';
+			input += 	'<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_replyUpdate();"><i class="fa fa-check"></i></button>';
+			input += '</form>';
+
+			$('.replyDiv').html(input);
+		}else{
+			$('.replyBtnCaller').css('display', 'none');
+			$('#replyContent').css('display', 'none');
+			$('#replytextarea').css('display', '');
+		}
+	};
+
+
+	var js_replyUpdate = function(hwSeq){
+		$('#hwSeq').val(hwSeq);
+
+		$('.replyForm').attr('action', '/homework/updateAction.do');
+		$('.replyForm').submit();
+
+// 		js_loadView('view');
+
+		$.ajax({
+			async:false,
+			url: 'view.do?hwSeq='+hwSeq,
+			success:function(data){
+				$('.content').html(data);
+			}
+		});
+	};
+
+	var js_cancel = function(){
+		$('#replyContent').css('display', '');
+		$('#replytextarea').css('display', 'none');
 	};
 </script>
 

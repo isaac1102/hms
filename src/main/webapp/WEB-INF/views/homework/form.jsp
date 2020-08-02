@@ -4,7 +4,7 @@
 	<button class="formbtn fr" onclick="js_list();"><i class="fa fa-list-alt"></i></button>
 </div>
 <div class="formArea">
-	<form action="dataForm" class="dataForm" method="post" enctype="multipart/form-data">
+	<form action="" class="dataForm" method="post" enctype="multipart/form-data">
 	    <label for="formGroupExampleInput" class="inputLabel">과제 제출</label>
 	    <div class="form-group" style="margin-bottom: 2rem;">
 		    <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="제목" >
