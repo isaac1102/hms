@@ -33,9 +33,9 @@
 
 	<insert id="insert" parameterType="homeworkVO" >
 		INSERT INTO BCU_HOMEWORK(
-			TITLE, REPLY, FILE_SEQ, CONFIRM_YN, CHECK_YN, REG_DT, REG_ID
+			TITLE, REPLY, CONFIRM_YN, CHECK_YN, REG_DT, REG_ID, FILE_SEQ
 		) VALUES(
-			#{title}, #{reply}, #{fileSeq}, #{confirmYn}, #{checkYn}, #{regDt}, #{regId}
+			#{title}, #{reply}, #{confirmYn}, #{checkYn}, #{regDt}, #{regId}, #{fileSeq}
 		)
 	</insert>
 
@@ -56,14 +56,10 @@
 	        AND A.FILE_SEQ = B.FILE_SEQ
 	</select>
 
-	<update id="update" parameterType="boardVO">
-		UPDATE TBL_BOARD
-		   SET
-		       TITLE = #{title},
-		       CONTENT = #{content},
-		       WRITER = #{writer},
-		       modi_date = SYSDATE
-		 WHERE BNO = #{bno}
+	<update id="update" parameterType="homeworkVO">
+		UPDATE BCU_HOMEWORK
+		   SET REPLY = #{reply}
+		 WHERE HW_SEQ = #{hwSeq}
 	</update>
 
 	<delete id="delete" parameterType="boardVO">

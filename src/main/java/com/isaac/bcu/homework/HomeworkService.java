@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.isaac.bcu.file.FileDao;
+
 public class HomeworkService {
 
 	@Autowired
@@ -19,5 +21,9 @@ public class HomeworkService {
 
 	public int insert(HomeworkVO hwVO) {
 		return dao.insert(hwVO);
+	}
+
+	public int update(HomeworkVO hwVO) {
+		return dao.update(hwVO);
 	}
 }
