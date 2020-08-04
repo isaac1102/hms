@@ -2,10 +2,7 @@
 
 html, body{height: 100%;}
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
 
 .top{
 	position: fixed;width: 100%;z-index: 1;
@@ -190,7 +187,6 @@ body {
 .imgBody img{width: 350px; height: 350px;}
 .imgFoot{padding: 13px;}
 
-/*  */
 .replyArea{min-width: 300px;width: 100%;    padding: 10px;}
 
 .customcard{
