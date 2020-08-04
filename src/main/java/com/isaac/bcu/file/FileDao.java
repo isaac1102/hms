@@ -51,7 +51,7 @@ public class FileDao{
 		fvo.setFilePath(uploadPath);
 		fvo.setFileSize(mfile.getSize());
 		fvo.setFileType(mfile.getContentType());
-		fvo.setFileUrl("/homework/img/");
+		fvo.setFileUrl("/hwImg/img/");
 		fvo.setOrderNo(0);
 
 		sqlSession.insert("_file.insert", fvo);
