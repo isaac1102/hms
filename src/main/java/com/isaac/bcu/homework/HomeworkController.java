@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,9 @@ public class HomeworkController {
 	FileDao fileDao;
 
 	@RequestMapping(value="/main.do", method=RequestMethod.GET)
-	public String delete(HomeworkVO hwVO) {
+	public String delete(ModelMap model, HomeworkVO hwVO) {
+
+		model.addAttribute("hwSeq", hwVO.getHwSeq());
 		return "homework/main";
 	}
 
@@ -65,15 +68,15 @@ public class HomeworkController {
 		hwVO.setRegId("isaac");
 		service.insert(hwVO);
 
-		return "homework/main";
+		return "redirect:main.do";
 	}
 
 	@RequestMapping(value="/updateAction.do", method=RequestMethod.POST)
-	public String updateAction(HomeworkVO hwVO) throws IOException {
-		System.out.println("updateAction!!!!!!!!!!!!!!!!");
-		System.out.println(hwVO);
+	public String updateAction(ModelMap model, HomeworkVO hwVO) throws IOException {
+
+		model.addAttribute("hwSeq", hwVO.getHwSeq());
 		service.update(hwVO);
 
-		return "homework/main";
+		return "redirect:main.do";
 	}
 }

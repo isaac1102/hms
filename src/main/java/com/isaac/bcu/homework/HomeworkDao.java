@@ -25,4 +25,8 @@ public class HomeworkDao extends HomeworkService{
 	public int update(HomeworkVO hwVO) {
 		return sqlSession.update("_homework.update", hwVO);
 	}
+
+	public int insert(HomeworkVO hwVO) {
+		return sqlSession.update("_homework.insert", hwVO);
+	}
 }
