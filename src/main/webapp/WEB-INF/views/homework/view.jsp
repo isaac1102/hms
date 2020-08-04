@@ -18,6 +18,9 @@
 					</c:if>
 					<c:if test="${not empty dataView.reply}">
 						<div id="replyContent">${dataView.reply}</div>
+						<div class="text-muted ftSz15 tr">
+							${dataView.regDt}
+						</div>
 						<div class="replyBtnCaller">
 							<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_replyForm('${dataView.hwSeq}', 'exist');">답글수정</button>
 						</div>
@@ -34,7 +37,6 @@
 					</form>
 				</div>
 			</div>
-			<span class="text-muted ftSz15 fr">${dataView.regDt}</span>
 		</div>
 	</div>
 </div>
