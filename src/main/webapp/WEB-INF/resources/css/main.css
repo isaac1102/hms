@@ -221,3 +221,10 @@ body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
 .main{padding-top: 53px;}
 .fr{float: right;}
 .fl{float: left;}
+
+
+/* 상세보기 */
+#replyContent{white-space: pre;}
+.replyBtnCaller{
+    padding-bottom: 50px;
+}
