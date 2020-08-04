@@ -9,7 +9,7 @@
 <body>
 <div class="top">
 	<div class="topnav" id="myTopnav">
-	  <a href="#home" onclick="js_list();" class="active">과제</a>
+	  <a href="#home" onclick="moveToMain();" class="active">과제</a>
 	  <a href="#news">개인정보</a>
 	  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
 	    <i class="fa fa-bars"></i>
@@ -19,21 +19,21 @@
 <div class="main">
 	<div id="mySidebar" class="sidebar">
 	    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-	    <a href="#" onclick="js_list();">구다영</a>
+	    <a href="#" onclick="moveToMain();">구다영</a>
 	</div>
 	<div class="content"></div>
 </div>
 
 <script>
-
 	$(document).ready(function(){
-		$.ajax({
-			async: false,
-			url: 'list.do',
-			success:function(data){
-				$('.content').html(data);
-			}
-		});
+
+		var hwSeq = ${hwSeq};
+
+		if(hwSeq != '' || hwSeq != 0){
+			js_view(hwSeq);
+		}else{
+			js_loadView('list');
+		}
 	});
 
 	var js_loadView = function(action){
@@ -57,13 +57,9 @@
 		});
 	};
 
-	var js_list = function(){
-		js_loadView('list');
-	};
-
-	var js_insert = function(){
-		js_loadView('form');
-	};
+	var moveToMain = function(){
+		location.href="/homework/main.do";
+	}
 
 	var myFunction = function(){
 		var x = document.getElementById("myTopnav");
@@ -86,7 +82,7 @@
 
 	var js_submit = function(){
 
-		//Title validation
+		// validation
 		var title = $('#formGroupExampleInput').val();
 		var file = $('#exampleFormControlFile1').val();
 
@@ -103,30 +99,12 @@
 		$('.dataForm').submit();
 
 		//데이터 저장
-		//list.jsp로 이동
 		js_loadView('list');
 	};
 
-	var js_replyForm = function(hwSeq, exist){
-		if ( exist == undefined ){
-			var input = '';
-
-			input += '<form class="replyForm" method="post">';
-			input += 	'<input type="hidden" name="hwSeq" id="hwSeq">';
-			input += 	'<div class="form-group">';
-			input += 		'<textarea class="form-control" id="exampleFormControlTextarea1" name="reply" rows="5"></textarea>';
-			input += 	'</div>';
-
-			input += 	'<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_cancel();"><i class="fa fa-times"></i></button>';
-			input += 	'<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_replyUpdate();"><i class="fa fa-check"></i></button>';
-			input += '</form>';
-
-			$('.replyDiv').html(input);
-		}else{
-			$('.replyBtnCaller').css('display', 'none');
-			$('#replyContent').css('display', 'none');
-			$('#replytextarea').css('display', '');
-		}
+	var js_replyForm = function(){
+		$('.formDiv').css('display', '');
+		$('.replyInfoDiv').css('display', 'none');
 	};
 
 
@@ -135,16 +113,6 @@
 
 		$('.replyForm').attr('action', '/homework/updateAction.do');
 		$('.replyForm').submit();
-
-// 		js_loadView('view');
-
-		$.ajax({
-			async:false,
-			url: 'view.do?hwSeq='+hwSeq,
-			success:function(data){
-				$('.content').html(data);
-			}
-		});
 	};
 
 	var js_cancel = function(){

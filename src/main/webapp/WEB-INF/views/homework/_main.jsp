@@ -25,13 +25,7 @@
 	  </a>
 	</div>
 </div>
-<!-- <div class="sidebar">
-	<a class="sidebar_btn" id="list">구다영</a>
-</div> -->
 <div class="container" id="container">
-<!-- 	<div class="btnPd">
-		<input type="button" class="fr" value="제출" onclick="js_insert();">
-	</div> -->
 	<div class="row">
 	</div>
 </div>
