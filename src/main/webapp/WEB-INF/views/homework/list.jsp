@@ -2,7 +2,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="topBtn">
 	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
-	<button class="formbtn fr" onclick="js_loadView('form');"><i class="fa fa-pencil"></i></button>
+	<button class="formbtn fr" onclick="js_pageLoad('form');"><i class="fa fa-pencil"></i></button>
 </div>
 <div class="list">
 	<c:forEach var="item" items="${dataList}">
@@ -13,7 +13,7 @@
 						<div>
 							<span class="imgTitle" onClick="js_view(${item.hwSeq});">${item.title}</span>
 						</div>
-						<div class="text-muted">
+						<div class="text-muted fr">
 							<span class="">${item.regDt }</span>
 						</div>
 					</div>

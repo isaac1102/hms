@@ -17,7 +17,6 @@
 						<button type="button" onclick="js_replyForm();" class="btn btn-outline-secondary">답변달기</button>
 					</c:if>
 					<c:if test="${not empty dataView.reply}">
-						<textarea class="form-control" rows="5" readonly="readonly">${dataView.reply}</textarea>
 						<div id="replyContent">${dataView.reply}</div>
 						<div class="replyBtnCaller">
 							<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_replyForm('${dataView.hwSeq}', 'exist');">답글수정</button>
@@ -28,7 +27,7 @@
 					<form class="replyForm" method="post">
 						<input type="hidden" name="hwSeq" id="hwSeq">
 						<div class="form-group">
-							<textarea class="form-control" name="reply" rows="5">${dataView.reply}</textarea>
+							<textarea class="form-control" name="reply" id="reply" rows="5">${dataView.reply}</textarea>
 						</div>
 						<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_cancel();"><i class="fa fa-times"></i></button>
 						<button type="button" class="btn btn-warning fr mg5" style="color:white;" onclick="js_replyUpdate('${dataView.hwSeq}');"><i class="fa fa-check"></i></button>

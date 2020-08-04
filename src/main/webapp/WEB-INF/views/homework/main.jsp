@@ -25,18 +25,19 @@
 </div>
 
 <script>
+
 	$(document).ready(function(){
 
 		var hwSeq = ${hwSeq};
 
-		if(hwSeq != '' || hwSeq != 0){
+		if ( hwSeq != '' || hwSeq != 0 ) {
 			js_view(hwSeq);
 		}else{
-			js_loadView('list');
+			js_pageLoad('list');
 		}
 	});
 
-	var js_loadView = function(action){
+	var js_pageLoad = function(action){
 		$.ajax({
 			url: action + '.do',
 			success:function(data){
@@ -63,7 +64,7 @@
 
 	var myFunction = function(){
 		var x = document.getElementById("myTopnav");
-		if (x.className === "topnav") {
+		if ( x.className === "topnav" ) {
 			x.className += " responsive";
 		} else {
 			x.className = "topnav";
@@ -80,26 +81,45 @@
 		document.getElementById("openbtn").style.display = "block";
 	};
 
+	var validator = function(name, data, length){
+
+		var pass = true;
+
+		if ( data.length >= length ) {
+			alert(length+'자까지만 입력할 수 있어요.');
+
+			pass = false;
+		}
+
+		if( data == '' || data.length == 0) {
+			if ( name == '파일'){
+				alert('파일을 업로드하세요.');
+				pass = false;
+			}
+			else {
+				alert(name + '을 입력하세요.');
+				pass = false;
+			}
+		}
+
+		return pass;
+	};
+
 	var js_submit = function(){
 
 		// validation
 		var title = $('#formGroupExampleInput').val();
 		var file = $('#exampleFormControlFile1').val();
 
-		if(title == ''){
-			alert('제목을 입력하세요.')
-		}
+		if ( !validator('제목', title, 50) )  return false;
+		if ( !validator('파일', file, 50) ) return false;
 
-		if(file == ''){
-			alert('파일을 업로드 하세요.');
-			return false;
-		}
 
 		$('.dataForm').attr('action', '/homework/insertAction.do');
 		$('.dataForm').submit();
 
 		//데이터 저장
-		js_loadView('list');
+		js_pageLoad('list');
 	};
 
 	var js_replyForm = function(){
@@ -110,14 +130,17 @@
 
 	var js_replyUpdate = function(hwSeq){
 		$('#hwSeq').val(hwSeq);
+		var reply = $('#reply').val();
+
+		if ( !validator('답변', reply, 1000) )  return false;
 
 		$('.replyForm').attr('action', '/homework/updateAction.do');
 		$('.replyForm').submit();
 	};
 
 	var js_cancel = function(){
-		$('#replyContent').css('display', '');
-		$('#replytextarea').css('display', 'none');
+		$('.formDiv').css('display', 'none');
+		$('.replyInfoDiv').css('display', '');
 	};
 </script>
 
