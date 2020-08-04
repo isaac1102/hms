@@ -3,18 +3,6 @@
 
 <mapper namespace="_homework">
 
-<!-- 	<sql id="dynamicWhere">
-		<if test="searchKey == 'title'">
-			AND TITLE LIKE '%'|| #{searchVal}||'%'
-		</if>
-		<if test="searchKey == 'content'">
-			AND CONTENT LIKE '%'||#{searchVal}||'%'
-		</if>
-		<if test="searchKey == 'writer'">
-			AND WRITER LIKE '%'||#{searchVal}||'%'
-		</if>
-	</sql> -->
-
 	<select id="list" resultType="homeworkVO" parameterType="homeworkVO" >
 		 SELECT
 		        A.HW_SEQ      AS hwSeq,
@@ -28,14 +16,14 @@
 		   FROM BCU_HOMEWORK A,
 		        BCU_FILE B
 	      WHERE A.FILE_SEQ = B.FILE_SEQ
-	      ORDER BY REG_DT DESC
+	      ORDER BY HW_SEQ DESC
 	</select>
 
 	<insert id="insert" parameterType="homeworkVO" >
 		INSERT INTO BCU_HOMEWORK(
 			TITLE, REPLY, CONFIRM_YN, CHECK_YN, REG_DT, REG_ID, FILE_SEQ
 		) VALUES(
-			#{title}, #{reply}, #{confirmYn}, #{checkYn}, #{regDt}, #{regId}, #{fileSeq}
+			#{title}, #{reply}, #{confirmYn}, #{checkYn}, now(), #{regId}, #{fileSeq}
 		)
 	</insert>
 
