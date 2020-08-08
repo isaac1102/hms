@@ -5,13 +5,12 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="memberVO" type="com.isaac.board.member.MemberVO"></typeAlias>
-		<typeAlias alias="boardVO" type="com.isaac.board.BoardVO"></typeAlias>
 		<typeAlias alias="homeworkVO" type="com.isaac.bcu.homework.HomeworkVO"></typeAlias>
 		<typeAlias alias="fileVO" type="com.isaac.bcu.file.FileVO"></typeAlias>
+		<typeAlias alias="memberVO" type="com.isaac.bcu.homework.member.MemberVO"></typeAlias>
 	</typeAliases>
 	<plugins>
-		<plugin interceptor="com.isaac.board.interceptor.LogInterceptor"></plugin>
+		<plugin interceptor="com.isaac.homework.interceptor.LogInterceptor"></plugin>
 	</plugins>
 
 </configuration>

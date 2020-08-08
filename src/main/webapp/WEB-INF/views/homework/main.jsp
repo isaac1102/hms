@@ -5,12 +5,16 @@
 <%@ include file="../include/header.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <title>부천대학교 과제관리 시스템</title>
+<c:set var="isLogin" value="${not empty loginId}"/>
 </head>
 <body>
 <div class="top">
 	<div class="topnav" id="myTopnav">
 	  <a href="#home" onclick="moveToMain();" class="active">과제</a>
 	  <a href="#news">개인정보</a>
+	  <a id="testId" style="color:white;">${loginId}</a>
+	  <a href="#login" class="loginTag"  id="loginTag" onclick="js_pageLoad('/member/loginForm');">로그인</a>
+	  <a href="#signUp" class="loginTag" id="signupTag" onclick="js_pageLoad('/member/signupForm');">회원가입</a>
 	  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
 	    <i class="fa fa-bars"></i>
 	  </a>
@@ -25,15 +29,16 @@
 </div>
 
 <script>
-
 	$(document).ready(function(){
 
-		var hwSeq = ${hwSeq};
+		var hwSeq = '${hwVO.hwSeq}';
+		var viewName = '${hwVO.viewName}';
 
-		if ( hwSeq != '' || hwSeq != 0 ) {
+
+		if( hwSeq !== '0' ){
 			js_view(hwSeq);
 		}else{
-			js_pageLoad('list');
+			js_pageLoad(viewName);
 		}
 	});
 
@@ -141,6 +146,20 @@
 	var js_cancel = function(){
 		$('.formDiv').css('display', 'none');
 		$('.replyInfoDiv').css('display', '');
+	};
+
+	var js_logOut = function(){
+		$('#loginTag').text('로그인');
+		js_pageLoad('/member/loginForm');
+		$('#testId').text('');
+
+		$.ajax({
+			url:'/member/logout.do',
+			method:'get',
+			success:function(data){
+				console.log(data);
+			}
+		});
 	};
 </script>
 
