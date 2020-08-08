@@ -24,7 +24,7 @@
 		)
 	</insert>
 
-	<select id="list" resultType="homeworkVO" parameterType="homeworkVO" >
+	<select id="list" resultType="fileVO" parameterType="fileVO" >
 		 SELECT
 		        A.HW_SEQ      AS hwSeq,
 				A.TITLE       AS title,
@@ -42,7 +42,7 @@
 
 
 
-	<select id="view" parameterType="homeworkVO" resultType="homeworkVO">
+	<select id="view" parameterType="fileVO" resultType="fileVO">
 		SELECT
 		        A.HW_SEQ      AS hwSeq,
 				A.TITLE       AS title,
@@ -59,7 +59,7 @@
 	        AND A.FILE_SEQ = B.FILE_SEQ
 	</select>
 
-	<update id="update" parameterType="boardVO">
+	<update id="update" parameterType="fileVO">
 		UPDATE TBL_BOARD
 		   SET
 		       TITLE = #{title},
@@ -69,12 +69,12 @@
 		 WHERE BNO = #{bno}
 	</update>
 
-	<delete id="delete" parameterType="boardVO">
+	<delete id="delete" parameterType="fileVO">
 		DELETE FROM TBL_BOARD
 		WHERE BNO = #{bno}
 	</delete>
 
-	<update id="updateReadCnt"  parameterType="boardVO">
+	<update id="updateReadCnt"  parameterType="fileVO">
 		UPDATE TBL_BOARD
 		   SET VIEWCNT = VIEWCNT + 1
 		 WHERE BNO = #{bno}

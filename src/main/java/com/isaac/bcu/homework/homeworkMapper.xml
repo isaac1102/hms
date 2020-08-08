@@ -50,12 +50,12 @@
 		 WHERE HW_SEQ = #{hwSeq}
 	</update>
 
-	<delete id="delete" parameterType="boardVO">
+	<delete id="delete" parameterType="homeworkVO">
 		DELETE FROM TBL_BOARD
 		WHERE BNO = #{bno}
 	</delete>
 
-	<update id="updateReadCnt"  parameterType="boardVO">
+	<update id="updateReadCnt"  parameterType="homeworkVO">
 		UPDATE TBL_BOARD
 		   SET VIEWCNT = VIEWCNT + 1
 		 WHERE BNO = #{bno}

@@ -3,9 +3,9 @@ package com.isaac.bcu.homework;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.isaac.bcu.file.FileDao;
-
+@Service("homeworkService")
 public class HomeworkService {
 
 	@Autowired

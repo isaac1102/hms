@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="_member">
+
+	<select id="list" resultType="memberVO" parameterType="memberVO" >
+		 SELECT
+		        A.HW_SEQ      AS hwSeq,
+				A.TITLE       AS title,
+				A.REG_DT      AS regDt,
+				CONCAT(B.FILE_PATH , B.FILE_NM) AS filePath,
+				CONCAT(B.FILE_URL, B.FILE_NM )  AS fileUrl,
+				CHECK_YN AS checkYn,
+				REG_ID      AS regId,
+				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
+		   FROM BCU_HOMEWORK A,
+		        BCU_FILE B
+	      WHERE A.FILE_SEQ = B.FILE_SEQ
+	      ORDER BY HW_SEQ DESC
+	</select>
+
+	<insert id="insert" parameterType="memberVO" >
+		INSERT INTO BCU_MEMBER(
+			USER_ID, USER_NM, PASSWORD, KLASS, LEVEL
+		) VALUES(
+			#{userId}, #{userNm}, #{password}, #{klass}, #{level}
+		)
+	</insert>
+
+	<select id="view" parameterType="memberVO" resultType="memberVO">
+		SELECT
+			   USER_ID         AS userId,
+			   USER_NM         AS userNm,
+			   PASSWORD        AS password,
+			   KLASS           AS klass,
+			   LEVEL           AS level,
+			   ATTENDING_YN    AS attendingYn,
+			   CHECK_YN        AS checkYn
+		   FROM BCU_MEMBER
+	      WHERE USER_ID = #{userId}
+	</select>
+
+	<update id="update" parameterType="memberVO">
+		UPDATE BCU_HOMEWORK
+		   SET REPLY = #{reply}
+		 WHERE HW_SEQ = #{hwSeq}
+	</update>
+
+	<delete id="delete" parameterType="memberVO">
+		DELETE FROM TBL_BOARD
+		WHERE BNO = #{bno}
+	</delete>
+
+	<update id="updateReadCnt"  parameterType="memberVO">
+		UPDATE TBL_BOARD
+		   SET VIEWCNT = VIEWCNT + 1
+		 WHERE BNO = #{bno}
+	</update>
+</mapper>

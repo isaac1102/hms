@@ -13,14 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.isaac.bcu.file.FileDao;
-import com.isaac.board.BoardVO;
+import com.isaac.bcu.homework.member.MemberService;
 
 @Controller
 @RequestMapping(value="/homework")
 public class HomeworkController {
 
 	@Autowired
-	HomeworkService service;
+	HomeworkService homeworkService;
 
 	@Autowired
 	FileDao fileDao;
@@ -28,7 +28,14 @@ public class HomeworkController {
 	@RequestMapping(value="/main.do", method=RequestMethod.GET)
 	public String delete(ModelMap model, HomeworkVO hwVO) {
 
-		model.addAttribute("hwSeq", hwVO.getHwSeq());
+		// 과제물 리스트 기본 세팅
+		if ( hwVO.getViewName() == null ) {
+			hwVO.setViewName("list");
+			hwVO.setHwSeq(StaticResource.ZERO);
+		}
+
+		model.addAttribute("hwVO", hwVO);
+
 		return "homework/main";
 	}
 
@@ -38,7 +45,7 @@ public class HomeworkController {
 		ModelAndView mv = new ModelAndView();
 
 		mv.setViewName("homework/list");
-		mv.addObject("dataList", service.list(hwVO));
+		mv.addObject("dataList", homeworkService.list(hwVO));
 
 		return mv;
 	}
@@ -49,34 +56,35 @@ public class HomeworkController {
 		ModelAndView mv = new ModelAndView();
 
 		mv.setViewName("homework/view");
-		mv.addObject("dataView", service.view(hwVO));
+		mv.addObject("dataView", homeworkService.view(hwVO));
 		return mv;
 	}
 
 	@RequestMapping(value="/form.do", method=RequestMethod.GET)
-	public String form(BoardVO boardVO) {
+	public String form(HomeworkVO hwVO) {
 
 		return "homework/form";
 	}
+
 
 	@RequestMapping(value="/insertAction.do", method=RequestMethod.POST)
 	public String insertAction(HomeworkVO hwVO,@RequestParam("file") MultipartFile mfile) throws IOException {
 
 		int fileSeq = fileDao.insert(mfile);
-		hwVO.setFileSeq(fileSeq);
-		// 데이터 저장
-		hwVO.setRegId("isaac");
-		service.insert(hwVO);
 
-		return "redirect:main.do";
+		hwVO.setFileSeq(fileSeq);
+		hwVO.setRegId("isaac"); // 테스트 데이터
+
+		homeworkService.insert(hwVO);
+
+		return "redirect:main.do?viewName=list";
 	}
 
 	@RequestMapping(value="/updateAction.do", method=RequestMethod.POST)
 	public String updateAction(ModelMap model, HomeworkVO hwVO) throws IOException {
 
-		model.addAttribute("hwSeq", hwVO.getHwSeq());
-		service.update(hwVO);
+		homeworkService.update(hwVO);
 
-		return "redirect:main.do";
+		return "redirect:main.do?viewName=view&hwSeq="+hwVO.getHwSeq();
 	}
 }

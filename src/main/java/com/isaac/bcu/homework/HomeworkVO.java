@@ -16,4 +16,5 @@ public class HomeworkVO {
 	String regDt;
 	String modiDt;
 	String regId;
+	String viewName;
 }
