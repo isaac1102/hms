@@ -7,6 +7,9 @@ public class EncryptUtil {
 
 	public String encryptPsswd(String psswd) throws NoSuchAlgorithmException {
 
+//		String salt = "woori";
+//		psswd = psswd + salt;
+
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		md.update(psswd.getBytes());
 
