@@ -25,6 +25,7 @@ public class HomeworkController {
 	@Autowired
 	FileDao fileDao;
 
+	//	메인화면
 	@RequestMapping(value="/main.do", method=RequestMethod.GET)
 	public String delete(ModelMap model, HomeworkVO hwVO) {
 
@@ -39,6 +40,11 @@ public class HomeworkController {
 		return "homework/main";
 	}
 
+	@RequestMapping(value="/returnView.do", method=RequestMethod.GET)
+	public String returnView(@RequestParam("viewName") String viewName) {
+		System.out.println(viewName);
+		return viewName;
+	}
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public ModelAndView list(HomeworkVO hwVO) {
 

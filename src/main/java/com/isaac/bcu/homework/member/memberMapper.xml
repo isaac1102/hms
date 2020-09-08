@@ -21,9 +21,9 @@
 
 	<insert id="insert" parameterType="memberVO" >
 		INSERT INTO BCU_MEMBER(
-			USER_ID, USER_NM, PASSWORD, KLASS, LEVEL
+			USER_ID, USER_NM, PASSWORD, KLASS, LEVEL, TEACHER_YN
 		) VALUES(
-			#{userId}, #{userNm}, #{password}, #{klass}, #{level}
+			#{userId}, #{userNm}, #{password}, #{klass}, #{level}, #{teacherYn}
 		)
 	</insert>
 
@@ -38,6 +38,12 @@
 			   CHECK_YN        AS checkYn
 		   FROM BCU_MEMBER
 	      WHERE USER_ID = #{userId}
+	</select>
+
+	<select id="checkDupl" parameterType="memberVO" resultType="int">
+		SELECT COUNT(USER_ID)
+		  FROM BCU_MEMBER
+		 WHERE USER_ID = #{userId}
 	</select>
 
 	<update id="update" parameterType="memberVO">

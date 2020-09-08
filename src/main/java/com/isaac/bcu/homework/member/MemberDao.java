@@ -36,10 +36,17 @@ public class MemberDao {
 	}
 
 	public void signupAction(MemberVO mbVO) throws NoSuchAlgorithmException {
-
+		
 		String encPasswd = encryptUtil.encryptPsswd(mbVO.getPassword());
 		mbVO.setPassword(encPasswd);
 
 		sqlSession.insert("_member.insert", mbVO);
+	}
+
+	public boolean checkDupleId(MemberVO mbVO) {
+
+		int cnt = sqlSession.selectOne("_member.checkDupl", mbVO);
+
+		return cnt == 0 ? true : false;
 	}
 }

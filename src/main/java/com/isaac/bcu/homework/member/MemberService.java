@@ -23,4 +23,9 @@ public class MemberService {
 	public void signupAction(MemberVO mbVO) throws NoSuchAlgorithmException {
 		dao.signupAction(mbVO);
 	}
+
+	public boolean checkDupleId(MemberVO mbVO) {
+
+		return dao.checkDupleId(mbVO);
+	}
 }

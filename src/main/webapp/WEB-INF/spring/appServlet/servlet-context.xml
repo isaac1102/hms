@@ -29,5 +29,13 @@
 		<beans:constructor-arg value="C:\img"/>
 	</beans:bean>
 
+	<interceptors>
+		<interceptor>
+			<mapping path="/**/list*"/>
+			<beans:bean class="com.isaac.homework.interceptor.AuthCheckInterceptor">
+			</beans:bean>
+		</interceptor>
+	</interceptors>
+
 	<context:component-scan base-package="com.isaac.**" />
 </beans:beans>

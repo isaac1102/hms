@@ -12,6 +12,7 @@ public class MemberVO {
 	String AttendingYn;
 	String checkYn;
 	String viewName;
+	String teacherYn;
 	boolean loginCheck;
 	int loginStatusCd;
 }

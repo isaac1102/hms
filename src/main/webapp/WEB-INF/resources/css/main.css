@@ -248,3 +248,6 @@ body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
 .replyBtnCaller{
     padding-bottom: 50px;
 }
+
+.top .topnav .loginId{float: right; color: white;}
+.resultMsg{display: none; color: red;}

@@ -16,42 +16,43 @@ import com.isaac.bcu.homework.HomeworkVO;
 import com.isaac.bcu.homework.StaticResource;
 
 @Controller
-@RequestMapping(value="/member")
 public class MemberController {
 
 	@Autowired
 	MemberService service;
 
-	@RequestMapping(value="/signupForm.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/signupForm.do", method=RequestMethod.GET)
 	public String signupForm(MemberVO hwVO) {
 
 		return "homework/member/signupForm";
 	}
 
-	@RequestMapping(value="/signupAction.do", method=RequestMethod.POST)
+	@RequestMapping(value="/member/signupAction.do", method=RequestMethod.POST)
 	public String signupAction(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
 
 		service.signupAction(mbVO);
 
-		return "homework/main";
-	}
-
-	@RequestMapping(value="/overlapCheck.do", method=RequestMethod.GET)
-	public String overlapCheck(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
-
-		service.signupAction(mbVO);
-
-		return "homework/main";
-	}
-
-	@RequestMapping(value="/loginForm.do", method=RequestMethod.GET)
-	public String loginForm(HomeworkVO hwVO) {
-
-		return "homework/member/loginForm";
+		return "";
+//		return "redirect:/homework/main.do";
 	}
 
 	@ResponseBody
-	@RequestMapping(value="/loginAction.do", method=RequestMethod.POST)
+	@RequestMapping(value="/member/checkDupleId.do", method=RequestMethod.GET)
+	public boolean checkDupleId(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
+
+		boolean result = service.checkDupleId(mbVO);
+
+		return result;
+	}
+
+	@RequestMapping(value="/member/loginForm.do", method=RequestMethod.GET)
+	public String loginForm(HomeworkVO hwVO) {
+
+		return "homework/member/loginForm.do";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/member/loginAction.do", method=RequestMethod.POST)
 	public MemberVO loginAction(HttpServletRequest request, ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
 
 		HttpSession session = request.getSession();
@@ -66,15 +67,12 @@ public class MemberController {
 			mbVO.setLoginStatusCd(StaticResource.LOGIN_SUCCESS_CODE);
 			session.setAttribute("loginId", loginInfo.getUserId());
 		}
-		else {
-			mbVO.setLoginStatusCd(StaticResource.LOGIN_FAIL_CODE);
-		}
 
 		return mbVO;
 	}
 
 	@ResponseBody
-	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/logout.do", method=RequestMethod.GET)
 	public void logout(HttpServletRequest request, MemberVO mbVO) {
 		HttpSession session = request.getSession();
 		session.invalidate();
