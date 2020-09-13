@@ -5,7 +5,7 @@
 <%@ include file="../include/header.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <title>부천대학교 과제관리 시스템</title>
-<c:set var="isLogin" value="${not empty loginId}"/>
+<c:set var="isLogin" value="${not empty loginInfo.userId}"/>
 </head>
 <body>
 <div class="top">
@@ -13,8 +13,8 @@
 	  <a href="main.do" class="active">과제</a>
 	  <a href="">개인정보</a>
 	  <a href="main.do?viewName=/member/loginForm" class="loginTag"  id="loginTag" ${isLogin ? 'onclick="js_logOut();"' : '' }>${isLogin ? '로그아웃' : '로그인' }</a>
-	  <a href="main.do?viewName=/member/signupForm" class="loginTag" id="signupTag">회원가입</a>
-	  <a id="testId" class="loginId">${loginId}</a>
+	  <a href="main.do?viewName=/member/signupForm" class="loginTag" id="signupTag">${isLogin ? ' ' : '회원가입' }</a>
+	  <a id="testId" class="loginId">${loginInfo.userId}</a>
 	  <a href="javascript:void(0);" class="icon" onclick="myFunction();">
 	    <i class="fa fa-bars"></i>
 	  </a>
@@ -23,12 +23,19 @@
 <div class="main">
 	<div id="mySidebar" class="sidebar">
 	    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-	    <a href="main.do">구다영</a>
+	    <div id="memberList">
+
+	    </div>
 	</div>
 	<div class="content"></div>
 </div>
 
 <script>
+	// 	뒤로가기 방지
+	history.pushState(null, null, location.href);
+		window.onpopstate = function () {
+	    history.go(1);
+	};
 
 	$(document).ready(function(){
 
@@ -39,23 +46,41 @@
 			js_view(hwSeq);
 			return false;
 		}
-
 		js_pageLoad(viewName);
+
+		if ( ${isLogin} ){
+			memberListUp('${loginInfo.userId}');
+		}
 	});
 
 	// 	페이지 로드 함수
 	var js_pageLoad = function(action){
 		$.ajax({
 			url: action + '.do',
+			method:'get',
 			success:function(data){
 				$('.content').html(data);
 			}
 		});
 	};
 
+	var js_list = function(userId){
+		$.ajax({
+			url: '/homework/list.do',
+			method:'get',
+			data : {
+				regId : userId
+			},
+			success:function(data){
+				$('.content').html(data);
+			}
+		});
+	}
+
 	var js_view = function(seq){
 		$.ajax({
 			url: 'view.do',
+			method:'get',
 			data:{
 				hwSeq : seq
 			},
@@ -88,29 +113,6 @@
 		document.getElementById("openbtn").style.display = "block";
 	};
 
-// 	var validator = function(name, data, length){
-// 		debugger;
-// 		var pass = true;
-
-// 		if ( data.length >= length ) {
-// 			alert( name + '은 ' + length + '자까지만 입력할 수 있어요.' );
-
-// 			pass = false;
-// 		}
-
-// 		if( data == '' || data.length == 0) {
-// 			if ( name == '파일'){
-// 				alert ( '파일을 업로드하세요.' );
-// 				pass = false;
-// 			}
-// 			else {
-// 				alert ( name + '을 입력하세요.');
-// 				pass = false;
-// 			}
-// 		}
-
-// 		return pass;
-// 	};
 
 	var js_submit = function(){
 
@@ -149,6 +151,7 @@
 		$('.formDiv').css('display', 'none');
 		$('.replyInfoDiv').css('display', '');
 	};
+
 	var js_login = function(){
 
 		// validation
@@ -166,10 +169,17 @@
 				password : password
 			},
 			success:function(data){
+
 				if ( data.loginStatusCd == 1){
+ 					// 로그인 성공시 main화면 list
 					js_pageLoad('list');
+
 					$('#loginTag').text('로그아웃');
+					$('#signupTag').html('')
 					$('#loginTag').attr('onclick', 'js_logOut();');
+
+					// 학생 리스트 업
+					memberListUp(userId);
 
 					//테스트용
 					$('#testId').text(data.userId);
@@ -194,6 +204,37 @@
 			}
 		});
 	};
+
+	var memberListUp = function(userId){
+
+		$.ajax({
+			url:'/member/list.do',
+			method:'get',
+			data:{
+				userId : userId
+			},
+			success:function(data){
+				var data = data;
+				var atag = '';
+				for ( var i = 0 ; i < data.length; i++ ){
+// 					names += '<div onclick="js_list("'+data[i].userId+'")">'+data[i].userNm+'</div>'
+					atag += '<a href="list.do?regId=' + data[i].userId + '">' + data[i].userNm + '</a>'
+				}
+				$('#memberList').html(atag);
+			}
+		});
+	}
+
+	var changeUrl = function(title, url, state){
+		if (typeof (history.pushState) != "undefined") {
+			//브라우저가 지원하는 경우
+			history.pushState(state, title, url);
+		} else {
+			location.href = url; //브라우저가 지원하지 않는 경우 페이지 이동처리
+		}
+	}
+
+
 </script>
 
 </body>
