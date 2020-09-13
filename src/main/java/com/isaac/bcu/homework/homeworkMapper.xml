@@ -16,6 +16,7 @@
 		   FROM BCU_HOMEWORK A,
 		        BCU_FILE B
 	      WHERE A.FILE_SEQ = B.FILE_SEQ
+	        AND REG_ID = #{regId}
 	      ORDER BY HW_SEQ DESC
 	</select>
 

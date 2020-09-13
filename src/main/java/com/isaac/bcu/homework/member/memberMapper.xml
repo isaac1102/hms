@@ -5,18 +5,43 @@
 
 	<select id="list" resultType="memberVO" parameterType="memberVO" >
 		 SELECT
-		        A.HW_SEQ      AS hwSeq,
-				A.TITLE       AS title,
-				A.REG_DT      AS regDt,
-				CONCAT(B.FILE_PATH , B.FILE_NM) AS filePath,
-				CONCAT(B.FILE_URL, B.FILE_NM )  AS fileUrl,
-				CHECK_YN AS checkYn,
-				REG_ID      AS regId,
-				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
-		   FROM BCU_HOMEWORK A,
-		        BCU_FILE B
-	      WHERE A.FILE_SEQ = B.FILE_SEQ
-	      ORDER BY HW_SEQ DESC
+				USER_ID        AS  userId    ,
+				USER_NM        AS  userNm    ,
+				KLASS          AS  klass     ,
+				LEVEL          AS  level     ,
+				ATTENDING_YN   AS  attendingY,
+				CHECK_YN       AS  checkYn   ,
+				TEACHER_YN     AS  teacherYn
+		   FROM BCU_MEMBER
+		  WHERE KLASS = #{klass}
+            AND TEACHER_YN  != 'y'
+	</select>
+
+	<select id="viewForLogin" parameterType="memberVO" resultType="memberVO">
+		SELECT
+			   USER_ID         AS userId,
+			   USER_NM         AS userNm,
+			   PASSWORD        AS password,
+			   KLASS           AS klass,
+			   LEVEL           AS level,
+			   ATTENDING_YN    AS attendingYn,
+			   CHECK_YN        AS checkYn,
+			   TEACHER_YN      AS teacherYn
+		   FROM BCU_MEMBER
+	      WHERE USER_ID = #{userId}
+	</select>
+
+		<select id="view" parameterType="memberVO" resultType="memberVO">
+		SELECT
+			   USER_ID         AS userId,
+			   USER_NM         AS userNm,
+			   KLASS           AS klass,
+			   LEVEL           AS level,
+			   ATTENDING_YN    AS attendingYn,
+			   CHECK_YN        AS checkYn,
+			   TEACHER_YN      AS teacherYn
+		   FROM BCU_MEMBER
+	      WHERE USER_ID = #{userId}
 	</select>
 
 	<insert id="insert" parameterType="memberVO" >
@@ -27,18 +52,6 @@
 		)
 	</insert>
 
-	<select id="view" parameterType="memberVO" resultType="memberVO">
-		SELECT
-			   USER_ID         AS userId,
-			   USER_NM         AS userNm,
-			   PASSWORD        AS password,
-			   KLASS           AS klass,
-			   LEVEL           AS level,
-			   ATTENDING_YN    AS attendingYn,
-			   CHECK_YN        AS checkYn
-		   FROM BCU_MEMBER
-	      WHERE USER_ID = #{userId}
-	</select>
 
 	<select id="checkDupl" parameterType="memberVO" resultType="int">
 		SELECT COUNT(USER_ID)

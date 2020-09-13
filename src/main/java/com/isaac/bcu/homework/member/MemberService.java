@@ -1,6 +1,7 @@
 package com.isaac.bcu.homework.member;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,10 @@ public class MemberService {
 	public boolean checkDupleId(MemberVO mbVO) {
 
 		return dao.checkDupleId(mbVO);
+	}
+
+	public List<MemberVO> list(MemberVO mbVO) {
+
+		return dao.list(mbVO);
 	}
 }

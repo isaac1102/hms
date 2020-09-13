@@ -1,6 +1,8 @@
 package com.isaac.bcu.homework.member;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,34 +23,10 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
-	@RequestMapping(value="/member/signupForm.do", method=RequestMethod.GET)
-	public String signupForm(MemberVO hwVO) {
-
-		return "homework/member/signupForm";
-	}
-
-	@RequestMapping(value="/member/signupAction.do", method=RequestMethod.POST)
-	public String signupAction(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
-
-		service.signupAction(mbVO);
-
-		return "";
-//		return "redirect:/homework/main.do";
-	}
-
-	@ResponseBody
-	@RequestMapping(value="/member/checkDupleId.do", method=RequestMethod.GET)
-	public boolean checkDupleId(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
-
-		boolean result = service.checkDupleId(mbVO);
-
-		return result;
-	}
-
 	@RequestMapping(value="/member/loginForm.do", method=RequestMethod.GET)
 	public String loginForm(HomeworkVO hwVO) {
 
-		return "homework/member/loginForm.do";
+		return "homework/member/loginForm";
 	}
 
 	@ResponseBody
@@ -58,14 +36,14 @@ public class MemberController {
 		HttpSession session = request.getSession();
 
 		MemberVO loginInfo = service.view(mbVO);
-		boolean loginResult = service.loginCheck(mbVO);
+		boolean loginSuccess = service.loginCheck(mbVO);
 
-		mbVO.setLoginCheck(loginResult);
+		mbVO.setLoginCheck(loginSuccess);
 
-
-		if ( loginResult ) {
+		if ( loginSuccess ) {
 			mbVO.setLoginStatusCd(StaticResource.LOGIN_SUCCESS_CODE);
-			session.setAttribute("loginId", loginInfo.getUserId());
+			session.setAttribute("loginInfo", loginInfo);
+			model.addAttribute("loginInfo", loginInfo);
 		}
 
 		return mbVO;
@@ -77,4 +55,44 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 	}
-}
+
+
+	@ResponseBody
+	@RequestMapping(value="/member/list.do", method=RequestMethod.GET)
+	public List<MemberVO> list(MemberVO mbVO) {
+
+		List<MemberVO> dataList =  new ArrayList<MemberVO>();
+		mbVO = service.view(mbVO);
+
+		if ( mbVO.getTeacherYn().equals("y") )
+			dataList = service.list(mbVO);
+		else
+			dataList.add(mbVO);
+
+		return dataList;
+	}
+
+	@RequestMapping(value="/member/signupForm.do", method=RequestMethod.GET)
+	public String signupForm(MemberVO mbVO) {
+
+		return "homework/member/signupForm";
+	}
+
+	@RequestMapping(value="/member/signupAction.do", method=RequestMethod.POST)
+	public String signupAction(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
+
+		service.signupAction(mbVO);
+
+		return "redirect:/homework/main.do";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/member/checkDupleId.do", method=RequestMethod.GET)
+	public boolean checkDupleId(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
+
+		boolean result = service.checkDupleId(mbVO);
+
+		return result;
+	}
+
+	}

@@ -28,7 +28,6 @@ public class HomeworkController {
 	//	메인화면
 	@RequestMapping(value="/main.do", method=RequestMethod.GET)
 	public String delete(ModelMap model, HomeworkVO hwVO) {
-
 		// 과제물 리스트 기본 세팅
 		if ( hwVO.getViewName() == null ) {
 			hwVO.setViewName("list");
@@ -36,21 +35,19 @@ public class HomeworkController {
 		}
 
 		model.addAttribute("hwVO", hwVO);
-
 		return "homework/main";
 	}
 
 	@RequestMapping(value="/returnView.do", method=RequestMethod.GET)
 	public String returnView(@RequestParam("viewName") String viewName) {
-		System.out.println(viewName);
 		return viewName;
 	}
+
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public ModelAndView list(HomeworkVO hwVO) {
 
 		ModelAndView mv = new ModelAndView();
 
-		mv.setViewName("homework/list");
 		mv.addObject("dataList", homeworkService.list(hwVO));
 
 		return mv;

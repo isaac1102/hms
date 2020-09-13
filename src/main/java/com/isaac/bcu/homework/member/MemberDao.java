@@ -1,6 +1,7 @@
 package com.isaac.bcu.homework.member;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,8 @@ public class MemberDao {
 	}
 
 	public boolean loginChck(MemberVO mbVO) throws NoSuchAlgorithmException {
-
 		// id로 회원정보 조회
-		MemberVO memberInfo =  sqlSession.selectOne("_member.view", mbVO);
+		MemberVO memberInfo =  sqlSession.selectOne("_member.viewForLogin", mbVO);
 
 		//입력된 비밀번호를 암호화
 		//암호화된 비밀번호를 id기준 비밀번호와 대조
@@ -29,14 +29,15 @@ public class MemberDao {
 
 		if ( memberInfo == null ) return false;
 
-		if ( memberInfo.getPassword().equals(encPasswd) )
+		if ( memberInfo.getPassword().equals(encPasswd) ) {
 			return true;
+		}
 		else
 			return false;
 	}
 
 	public void signupAction(MemberVO mbVO) throws NoSuchAlgorithmException {
-		
+
 		String encPasswd = encryptUtil.encryptPsswd(mbVO.getPassword());
 		mbVO.setPassword(encPasswd);
 
@@ -48,5 +49,10 @@ public class MemberDao {
 		int cnt = sqlSession.selectOne("_member.checkDupl", mbVO);
 
 		return cnt == 0 ? true : false;
+	}
+
+	public List<MemberVO> list(MemberVO mbVO) {
+		System.out.println(mbVO);
+		return sqlSession.selectList("_member.list", mbVO);
 	}
 }
