@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.isaac.bcu.homework.member.MemberVO;
+
 public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 
 	@Override
@@ -15,9 +17,9 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 
 		HttpSession session = request.getSession();
 
-		String loginId= (String) session.getAttribute("loginId");
+		MemberVO mvo= (MemberVO) session.getAttribute("loginInfo");
 
-		if(loginId == null) {
+		if ( mvo == null) {
 			response.sendRedirect("/homework/main.do?viewName=/member/loginForm");
 		}
 		return super.preHandle(request, response, handler);
