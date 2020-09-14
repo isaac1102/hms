@@ -13,15 +13,15 @@
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
-		   FROM BCU_HOMEWORK A,
-		        BCU_FILE B
+		   FROM isaac_data.bcu_homework A,
+		        isaac_data.bcu_file B
 	      WHERE A.FILE_SEQ = B.FILE_SEQ
 	        AND REG_ID = #{regId}
 	      ORDER BY HW_SEQ DESC
 	</select>
 
 	<insert id="insert" parameterType="homeworkVO" >
-		INSERT INTO BCU_HOMEWORK(
+		INSERT INTO isaac_data.bcu_homework(
 			TITLE, REPLY, CONFIRM_YN, CHECK_YN, REG_DT, REG_ID, FILE_SEQ
 		) VALUES(
 			#{title}, #{reply}, #{confirmYn}, #{checkYn}, now(), #{regId}, #{fileSeq}
@@ -39,14 +39,14 @@
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
-		   FROM BCU_HOMEWORK A,
-		        BCU_FILE B
+		   FROM isaac_data.bcu_homework A,
+		        isaac_data.bcu_file B
 	      WHERE A.HW_SEQ = ${hwSeq}
 	        AND A.FILE_SEQ = B.FILE_SEQ
 	</select>
 
 	<update id="update" parameterType="homeworkVO">
-		UPDATE BCU_HOMEWORK
+		UPDATE isaac_data.bcu_homework
 		   SET REPLY = #{reply}
 		 WHERE HW_SEQ = #{hwSeq}
 	</update>

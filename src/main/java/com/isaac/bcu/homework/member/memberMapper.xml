@@ -12,7 +12,7 @@
 				ATTENDING_YN   AS  attendingY,
 				CHECK_YN       AS  checkYn   ,
 				TEACHER_YN     AS  teacherYn
-		   FROM BCU_MEMBER
+		   FROM isaac_data.bcu_member
 		  WHERE KLASS = #{klass}
             AND TEACHER_YN  != 'y'
 	</select>
@@ -27,7 +27,7 @@
 			   ATTENDING_YN    AS attendingYn,
 			   CHECK_YN        AS checkYn,
 			   TEACHER_YN      AS teacherYn
-		   FROM BCU_MEMBER
+		   FROM isaac_data.bcu_member
 	      WHERE USER_ID = #{userId}
 	</select>
 
@@ -40,12 +40,12 @@
 			   ATTENDING_YN    AS attendingYn,
 			   CHECK_YN        AS checkYn,
 			   TEACHER_YN      AS teacherYn
-		   FROM BCU_MEMBER
+		   FROM isaac_data.bcu_member
 	      WHERE USER_ID = #{userId}
 	</select>
 
 	<insert id="insert" parameterType="memberVO" >
-		INSERT INTO BCU_MEMBER(
+		INSERT INTO isaac_data.bcu_member(
 			USER_ID, USER_NM, PASSWORD, KLASS, LEVEL, TEACHER_YN
 		) VALUES(
 			#{userId}, #{userNm}, #{password}, #{klass}, #{level}, #{teacherYn}
@@ -55,12 +55,12 @@
 
 	<select id="checkDupl" parameterType="memberVO" resultType="int">
 		SELECT COUNT(USER_ID)
-		  FROM BCU_MEMBER
+		  FROM isaac_data.bcu_member
 		 WHERE USER_ID = #{userId}
 	</select>
 
 	<update id="update" parameterType="memberVO">
-		UPDATE BCU_HOMEWORK
+		UPDATE isaac_data.bcu_homework
 		   SET REPLY = #{reply}
 		 WHERE HW_SEQ = #{hwSeq}
 	</update>

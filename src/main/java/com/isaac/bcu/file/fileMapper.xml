@@ -15,7 +15,7 @@
 		</if>
 	</sql> -->
 	<insert id="insert" parameterType="fileVO" useGeneratedKeys="true" keyProperty="fileSeq" >
-		INSERT INTO BCU_FILE(
+		INSERT INTO isaac_data.bcu_file(
 			FILE_PATH,  FILE_NM, FILE_URL,
 			ORDER_NO, FILE_SIZE, FILE_TYPE
 		) VALUES(
@@ -34,8 +34,8 @@
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
-		   FROM BCU_HOMEWORK A,
-		        BCU_FILE B
+		   FROM isaac_data.bcu_homework A,
+		        isaac_data.bcu_file B
 	      WHERE A.FILE_SEQ = B.FILE_SEQ
 	      ORDER BY REG_DT DESC
 	</select>
@@ -53,8 +53,8 @@
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
-		   FROM BCU_HOMEWORK A,
-		        BCU_FILE B
+		   FROM isaac_data.bcu_homework A,
+		        isaac_data.bcu_file B
 	      WHERE A.HW_SEQ = ${hwSeq}
 	        AND A.FILE_SEQ = B.FILE_SEQ
 	</select>
