@@ -74,9 +74,9 @@ public class HomeworkController {
 	public String insertAction(HomeworkVO hwVO,@RequestParam("file") MultipartFile mfile) throws IOException {
 
 		int fileSeq = fileDao.insert(mfile);
-
+		System.out.println(hwVO.getRegId());
 		hwVO.setFileSeq(fileSeq);
-		hwVO.setRegId("isaac"); // 테스트 데이터
+		hwVO.setRegId(hwVO.getRegId());
 
 		homeworkService.insert(hwVO);
 

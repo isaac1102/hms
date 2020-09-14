@@ -149,6 +149,16 @@ body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
   transition: 0.3s;
 }
 
+.sidebar .memberEl {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
 .sidebar a:hover {
   color: #f1f1f1;
 }
@@ -249,5 +259,5 @@ body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
     padding-bottom: 50px;
 }
 
-.top .topnav .loginId{float: right; color: white;}
+.top .topnav .showOutLoginId{float: right; color: white;}
 .resultMsg{display: none; color: red;}

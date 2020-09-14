@@ -5,6 +5,7 @@
 </div>
 <div class="formArea">
 	<form action="" class="dataForm" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="regId" value="${loginInfo.userId}">
 	    <label for="formGroupExampleInput" class="inputLabel">과제 제출</label>
 	    <div class="form-group" style="margin-bottom: 2rem;">
 		    <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="제목" >

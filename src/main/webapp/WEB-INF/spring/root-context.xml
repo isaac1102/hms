@@ -15,7 +15,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://@localhost:3306/isaac_data?serverTimezone=Asia/Seoul"/>
 		<property name="username" value="root"></property>
-		<property name="password" value="system"></property>
+		<property name="password" value="ekdud.534"></property>
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

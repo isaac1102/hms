@@ -2,7 +2,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="topBtn">
 	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
-	<button class="formbtn fr" onclick="moveToMain();"><i class="fa fa-list-alt"></i></button>
+	<button class="formbtn fr" onclick="js_list('${dataView.regId}');"><i class="fa fa-list-alt"></i></button>
 </div>
 <div class="contentView dis_flx">
 	<div class="imgWrapper customcard">
@@ -13,7 +13,7 @@
 		<div class="feedBackDiv pd15">
 			<div class="replyDiv">
 				<div class="replyInfoDiv">
-					<c:if test="${empty dataView.reply}">
+					<c:if test="${empty dataView.reply and loginInfo.teacherYn == 'y'}">
 						<button type="button" onclick="js_replyForm();" class="btn btn-outline-secondary">답변달기</button>
 					</c:if>
 					<c:if test="${not empty dataView.reply}">

@@ -5,6 +5,9 @@
 	<button class="formbtn fr" onclick="js_pageLoad('form');"><i class="fa fa-pencil"></i></button>
 </div>
 <div class="list">
+	<c:if test="${empty dataList}">
+		<h1> <-학생목록을 클릭하세요 </h1>
+	</c:if>
 	<c:forEach var="item" items="${dataList}">
 			<div class="col-md-4 pb15">
 				<div class="card box-shadow" onClick="js_view(${item.hwSeq});">
