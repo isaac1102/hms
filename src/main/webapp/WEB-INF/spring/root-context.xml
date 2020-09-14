@@ -12,9 +12,12 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://@localhost:3306/isaac_data?serverTimezone=Asia/Seoul"/>
+<!--   		<property name="url" value="jdbc:mysql://@15.165.144.189:3306/isaac_data?serverTimezone=Asia/Seoul"/> -->
+<!--  		<property name="username" value="admin"></property> -->
+		<property name="url" value="jdbc:mysql://@localhost:3306/?serverTimezone=Asia/Seoul"/>
 		<property name="username" value="root"></property>
+
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="password" value="ekdud.534"></property>
 	</bean>
 

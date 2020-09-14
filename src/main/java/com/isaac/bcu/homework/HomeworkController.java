@@ -2,6 +2,7 @@ package com.isaac.bcu.homework;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,11 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.isaac.bcu.file.FileDao;
-import com.isaac.bcu.homework.member.MemberService;
 
 @Controller
 @RequestMapping(value="/homework")
@@ -71,10 +71,9 @@ public class HomeworkController {
 
 
 	@RequestMapping(value="/insertAction.do", method=RequestMethod.POST)
-	public String insertAction(HomeworkVO hwVO,@RequestParam("file") MultipartFile mfile) throws IOException {
+	public String insertAction(HomeworkVO hwVO,  MultipartHttpServletRequest  multiFileRequest) throws IOException {
 
-		int fileSeq = fileDao.insert(mfile);
-		System.out.println(hwVO.getRegId());
+		List<Integer> fileSeqs = fileDao.insert(multiFileRequest);
 		hwVO.setFileSeq(fileSeq);
 		hwVO.setRegId(hwVO.getRegId());
 
