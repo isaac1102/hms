@@ -146,6 +146,7 @@
 		if ( !validator('제목', title, 50) )  return false;
 		if ( !validator('파일', file, 50) ) return false;
 		if ( !fileSizeCheck(fileList)) return false;
+		if ( !fileTypeCheck(fileList)) return false;
 
 
 		$('.dataForm').attr('action', '/homework/insertAction.do');
@@ -278,6 +279,33 @@
 
 		return true;
 	};
+
+	var fileTypeCheck = function(el){
+
+		var pass = false;
+		var imgType = ['jpeg','jfif',	'jpeg',	'exif',	'tiff',	'gif',	'bmp',	'png',	'ppm',	'pgm',	'pbm',	'pnm',	'hdr',	'heif',	'bpg']
+
+		for(var i = 0 ; i < el.length; i++){
+		    var files = el[i].files
+
+		    for(var j = 0 ; j < files.length; j++){
+		    	for (t in imgType){
+
+		    		if('image/'+imgType[t] == files[j].type )
+		    			pass = true;
+		    	}
+		    }
+		}
+
+		if(!pass){
+			alert('이미지 첨부만 가능합니다.');
+			return false;
+		}
+
+		return true;
+	};
+
+
 
 	var sizeToMb = function(size){
 		return Math.ceil((size / 1024 )/ 1024);

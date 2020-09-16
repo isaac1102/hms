@@ -10,7 +10,10 @@
 		<img class="imgView" src="${dataView.fileUrl}"/>
 	</div>
 	<div class="replyArea">
-		<div class="titleArea pd15">${dataView.title}</div>
+		<div class="titleArea pd15">
+			<span>${dataView.title}</span>
+			<span class="fr">${dataView.regDt}</span>
+		</div>
 		<div class="feedBackDiv pd15">
 			<div class="replyDiv">
 				<div class="replyInfoDiv">

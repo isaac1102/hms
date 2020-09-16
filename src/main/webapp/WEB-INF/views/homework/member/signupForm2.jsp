@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="btnArea">
 	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
+	<span class="depthIndicator">선생님 가입</span>
 	<button class="formbtn fr" onclick="js_pageLoad('list');"><i class="fa fa-list-alt"></i></button>
 </div>
+
 <div class="formArea">
 	<form action="" class="signUpForm" method="post">
 		<input type="hidden" name="level" id="level" value="3">
-		<input type="hidden" value="n" name="teacherYn" >
+		<input type="hidden" value="y" name="teacherYn" class="teacherYn">
 		<table>
 			<tr>
 				<th>아이디</th>
@@ -38,14 +40,13 @@
 <script type="text/javascript">
 
 	var js_signUp = function(){
-
 		// validation
 		var userId = $('#userId').val();
 		var password = $('#password').val();
 		var userNm = $('#userNm').val();
 		var klass = $('#klass').val();
 		var level = $('#level').val();
-		var dupleCheckYn = false;
+
 // 		var teacherYn = $('input[name=teacherYn]').val();
 
 		var pattern = /^[0-9]+$/;
@@ -61,27 +62,17 @@
 		if ( !validator('학년', level, 'text', 50) ) return false;
 // 		if ( !validator('구분', teacherYn, 'radio') ) return false;
 
-		dupleCheckYn = js_checkDupleId();
-
-		if(!dupleCheckYn){
-			alert('id 중복체크를 해주세요.');
-			return false;
-		}
-
 		$('.signUpForm').attr('action', '/member/signupAction.do');
 		$('.signUpForm').submit();
 	};
 
 	var js_checkDupleId = function(){
 		var userId = $('#userId').val();
-		var result;
-
 		$.ajax({
 			url : '/member/checkDupleId.do?userId='+userId,
-			async: false,
 			success: function(data){
 				$('.resultMsg').css('display', 'block');
-				result = data;
+
 				if ( data ) {
 					$('.resultMsg').text('사용가능한 아이디입니다.');
 				}else {
@@ -89,7 +80,5 @@
 				}
 			}
 		});
-
-		return result;
 	};
 </script>
