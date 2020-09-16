@@ -11,7 +11,7 @@
 		    <input type="text" class="form-control" id="formGroupExampleInput" name="title" placeholder="제목" >
 	    </div>
 	    <div class="form-group" style="margin-bottom: 2rem;">
-		    <input multiple="multiple" type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
+		    <input multiple="multiple" type="file" class="form-control-file" id="file" name="file">
 	    </div>
 	    <button type="button" class="btn btn-lg btn-warning btn-block" style="color: white;" onclick="js_submit();">Submit</button>
 	</form>

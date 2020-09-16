@@ -9,18 +9,18 @@
 		<h1> <-학생목록을 클릭하세요 </h1>
 	</c:if>
 	<c:forEach var="item" items="${dataList}">
-			<div class="col-md-4 pb15">
-				<div class="card box-shadow" onClick="js_view(${item.hwSeq});">
-					<img class="card-img-top maxSize cusPoint" src="${item.fileUrl }"/>
-					<div class="imgFoot">
-						<div>
-							<span class="imgTitle" onClick="js_view(${item.hwSeq});">${item.title}</span>
-						</div>
-						<div class="text-muted fr">
-							<span class="">${item.regDt }</span>
-						</div>
+		<div class="col-md-4 pb15">
+			<div class="card box-shadow" onClick="js_imgList(${item.hwSeq});">
+				<img class="card-img-top maxSize cusPoint" src="${item.fileUrl }"/>
+				<div class="imgFoot">
+					<div>
+						<span class="imgTitle" onClick="js_imgList(${item.hwSeq});">${item.title}</span>
+					</div>
+					<div class="text-muted fr">
+						<span class="">${item.regDt}</span>
 					</div>
 				</div>
 			</div>
+		</div>
 	</c:forEach>
 </div>

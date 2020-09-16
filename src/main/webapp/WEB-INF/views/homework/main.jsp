@@ -45,13 +45,14 @@
 
 		var hwSeq = '${hwVO.hwSeq}';
 		var viewName = '${hwVO.viewName}';
+		var fileSeq = '${hwVO.fileSeq}';
 
 		if ( ${isLogin} ){
 			memberListUp('${loginInfo.userId}');
 		}
 
 		if( hwSeq !== '0' ){
-			js_view(hwSeq);
+			js_view(hwSeq, fileSeq);
 			return false;
 		}
 
@@ -83,12 +84,28 @@
 		});
 	}
 
-	var js_view = function(seq){
+
+	var js_imgList = function(seq){
+		$.ajax({
+			url: 'imgList.do',
+			method:'get',
+			data:{
+				hwSeq : seq
+			},
+			success:function(data){
+				console.log(data)
+				$('.content').html(data);
+			}
+		});
+	}
+
+	var js_view = function(seq, fileSeq){
 		$.ajax({
 			url: 'view.do',
 			method:'get',
 			data:{
-				hwSeq : seq
+				hwSeq : seq,
+				fileSeq : fileSeq
 			},
 			success:function(data){
 				$('.content').html(data);
@@ -124,10 +141,12 @@
 
 		// validation
 		var title = $('#formGroupExampleInput').val();
-		var file = $('#exampleFormControlFile1').val();
+		var file = $('#file').val();
+		var fileList = $('#file');
 
 		if ( !validator('제목', title, 50) )  return false;
 		if ( !validator('파일', file, 50) ) return false;
+		if ( !fileSizeCheck(fileList)) return false;
 
 
 		$('.dataForm').attr('action', '/homework/insertAction.do');
@@ -142,9 +161,10 @@
 		$('.replyInfoDiv').css('display', 'none');
 	};
 
-
-	var js_replyUpdate = function(hwSeq){
+	var js_replyUpdate = function(hwSeq, fileSeq){
 		$('#hwSeq').val(hwSeq);
+		$('#fileSeq').val(fileSeq);
+
 		var reply = $('#reply').val();
 
 		if ( !validator('답변', reply, 1000) )  return false;
@@ -240,6 +260,30 @@
 			location.href = url; //브라우저가 지원하지 않는 경우 페이지 이동처리
 		}
 	};
+
+	var fileSizeCheck = function(el){
+		var maxUploadSize = ${maxUploadSize};
+		var sum = 0;
+
+		for(var i = 0 ; i < el.length; i++){
+		    var files = el[i].files
+
+		    for(var j = 0 ; j < files.length; j++){
+		    	sum += files[j].size
+		    }
+		}
+
+		if(sum >= maxUploadSize ){
+			alert('첨부용량은 ' + sizeToMb(maxUploadSize) +'메가바이트를 넘을 수 없습니다. \n현재용량 : '+ sizeToMb(sum) + '메가바이트');
+			return false;
+		}
+
+		return true;
+	};
+
+	var sizeToMb = function(size){
+		return Math.ceil((size / 1024 )/ 1024);
+	}
 </script>
 
 </body>
