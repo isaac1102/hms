@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.isaac.bcu.file.FileDao;
-
 @Repository
 public class HomeworkDao extends HomeworkService{
 
@@ -16,6 +14,10 @@ public class HomeworkDao extends HomeworkService{
 
 	public List<HomeworkVO> list(HomeworkVO hwVO){
 		return sqlSession.selectList("_homework.list", hwVO);
+	}
+
+	public List<HomeworkVO> imgList(HomeworkVO hwVO){
+		return sqlSession.selectList("_homework.imgList", hwVO);
 	}
 
 	public HomeworkVO view(HomeworkVO hwVO){
@@ -27,6 +29,7 @@ public class HomeworkDao extends HomeworkService{
 	}
 
 	public int insert(HomeworkVO hwVO) {
-		return sqlSession.update("_homework.insert", hwVO);
+		sqlSession.update("_homework.insert", hwVO);
+		return hwVO.getHwSeq();
 	}
 }

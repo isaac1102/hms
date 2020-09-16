@@ -1,5 +1,7 @@
 package com.isaac.bcu.homework;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -17,4 +19,6 @@ public class HomeworkVO {
 	String modiDt;
 	String regId;
 	String viewName;
+	List<Integer> fileSeqs;
+	String teacherYn;
 }

@@ -17,12 +17,20 @@
 	<insert id="insert" parameterType="fileVO" useGeneratedKeys="true" keyProperty="fileSeq" >
 		INSERT INTO isaac_data.bcu_file(
 			FILE_PATH,  FILE_NM, FILE_URL,
-			ORDER_NO, FILE_SIZE, FILE_TYPE
+			ORDER_NO, FILE_SIZE, FILE_TYPE, HW_SEQ
 		) VALUES(
 			#{filePath}, #{fileNm}, #{fileUrl},
-			#{orderNo}, #{fileSize}, #{fileType}
+			#{orderNo}, #{fileSize}, #{fileType}, #{hwSeq}
 		)
+
+		<selectKey keyProperty="fileSeq" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
+
+	<select id="getLastSeq" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
 
 	<select id="list" resultType="fileVO" parameterType="fileVO" >
 		 SELECT
@@ -30,7 +38,7 @@
 				A.TITLE       AS title,
 				A.REG_DT      AS regDt,
 				CONCAT(B.FILE_PATH , B.FILE_NM) AS filePath,
-				CONCAT(B.FILE_URL, B.FILE_NM )  AS fileUrl,
+			CONCAT(B.FILE_URL, B.FILE_NM )  AS fileUrl,
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
@@ -38,6 +46,12 @@
 		        isaac_data.bcu_file B
 	      WHERE A.FILE_SEQ = B.FILE_SEQ
 	      ORDER BY REG_DT DESC
+	</select>
+
+	<select id="test_list" resultType="fileVO" parameterType="fileVO" >
+		 SELECT *
+		   FROM isaac_data.bcu_file B
+
 	</select>
 
 

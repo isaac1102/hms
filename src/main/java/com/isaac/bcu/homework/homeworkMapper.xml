@@ -15,9 +15,28 @@
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
 		   FROM isaac_data.bcu_homework A,
 		        isaac_data.bcu_file B
-	      WHERE A.FILE_SEQ = B.FILE_SEQ
+	      WHERE A.HW_SEQ = B.HW_SEQ
 	        AND REG_ID = #{regId}
-	      ORDER BY HW_SEQ DESC
+	        AND B.ORDER_NO = 1
+	      ORDER BY A.HW_SEQ DESC
+	</select>
+
+	<select id="imgList" resultType="homeworkVO" parameterType="homeworkVO" >
+		 SELECT
+		        A.HW_SEQ      AS hwSeq,
+				A.TITLE       AS title,
+				A.REG_DT      AS regDt,
+				CONCAT(B.FILE_PATH , B.FILE_NM) AS filePath,
+				CONCAT(B.FILE_URL, B.FILE_NM )  AS fileUrl,
+				B.FILE_SEQ AS fileSeq,
+				CHECK_YN AS checkYn,
+				REG_ID      AS regId,
+				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
+		   FROM isaac_data.bcu_homework A,
+		        isaac_data.bcu_file B
+	      WHERE A.HW_SEQ = B.HW_SEQ
+	        AND A.HW_SEQ = ${hwSeq}
+	      ORDER BY A.HW_SEQ DESC
 	</select>
 
 	<insert id="insert" parameterType="homeworkVO" >
@@ -26,6 +45,9 @@
 		) VALUES(
 			#{title}, #{reply}, #{confirmYn}, #{checkYn}, now(), #{regId}, #{fileSeq}
 		)
+		<selectKey keyProperty="hwSeq" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 
 	<select id="view" parameterType="homeworkVO" resultType="homeworkVO">
@@ -34,15 +56,18 @@
 				A.TITLE       AS title,
 				A.REPLY       AS reply,
 				A.REG_DT      AS regDt,
+				(SELECT TEACHER_YN FROM isaac_data.bcu_member WHERE USER_ID = A.REG_ID ) AS teacherYn,
 				CONCAT(B.FILE_PATH , B.FILE_NM) AS filePath,
 				CONCAT(B.FILE_URL, B.FILE_NM )  AS fileUrl,
+				B.FILE_SEQ   AS fileSeq,
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt
 		   FROM isaac_data.bcu_homework A,
 		        isaac_data.bcu_file B
 	      WHERE A.HW_SEQ = ${hwSeq}
-	        AND A.FILE_SEQ = B.FILE_SEQ
+	        AND B.FILE_SEQ = #{fileSeq}
+	        AND A.HW_SEQ = B.HW_SEQ
 	</select>
 
 	<update id="update" parameterType="homeworkVO">

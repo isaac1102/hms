@@ -15,6 +15,10 @@ public class HomeworkService {
 		return dao.list(hwVO);
 	}
 
+	public List<HomeworkVO> imgList(HomeworkVO hwVO){
+		return dao.imgList(hwVO);
+	}
+
 	public HomeworkVO view(HomeworkVO hwVO) {
 		return dao.view(hwVO);
 	}

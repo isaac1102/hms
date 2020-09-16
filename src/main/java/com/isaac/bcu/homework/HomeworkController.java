@@ -2,9 +2,9 @@ package com.isaac.bcu.homework;
 
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +25,21 @@ public class HomeworkController {
 	@Autowired
 	FileDao fileDao;
 
+	@Autowired
+	@Qualifier("maxUploadSize")
+	Integer maxUploadSize;
+
 	//	메인화면
 	@RequestMapping(value="/main.do", method=RequestMethod.GET)
 	public String delete(ModelMap model, HomeworkVO hwVO) {
+
 		// 과제물 리스트 기본 세팅
 		if ( hwVO.getViewName() == null ) {
 			hwVO.setViewName("list");
 			hwVO.setHwSeq(StaticResource.ZERO);
 		}
 
+		model.addAttribute("maxUploadSize", maxUploadSize);
 		model.addAttribute("hwVO", hwVO);
 		return "homework/main";
 	}
@@ -49,6 +55,16 @@ public class HomeworkController {
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject("dataList", homeworkService.list(hwVO));
+
+		return mv;
+	}
+
+	@RequestMapping(value="/imgList.do", method=RequestMethod.GET)
+	public ModelAndView imgList(HomeworkVO hwVO) {
+
+		ModelAndView mv = new ModelAndView();
+
+		mv.addObject("dataList", homeworkService.imgList(hwVO));
 
 		return mv;
 	}
@@ -71,15 +87,22 @@ public class HomeworkController {
 
 
 	@RequestMapping(value="/insertAction.do", method=RequestMethod.POST)
-	public String insertAction(HomeworkVO hwVO,  MultipartHttpServletRequest  multiFileRequest) throws IOException {
+	public String insertAction(HomeworkVO hwVO,  MultipartHttpServletRequest  multiFileRequest) throws Exception {
 
-		List<Integer> fileSeqs = fileDao.insert(multiFileRequest);
-		hwVO.setFileSeq(fileSeq);
 		hwVO.setRegId(hwVO.getRegId());
-
 		homeworkService.insert(hwVO);
+		boolean result = fileDao.insert(multiFileRequest, hwVO.getHwSeq());
 
-		return "redirect:main.do?viewName=list";
+		if ( result )
+			return "redirect:main.do?viewName=list";
+		else {
+
+			System.out.println("예외다. 예외");
+			System.out.println("예외다. 예외");
+			System.out.println("예외다. 예외");
+			System.out.println("예외다. 예외");
+			return "";
+		}
 	}
 
 	@RequestMapping(value="/updateAction.do", method=RequestMethod.POST)
@@ -87,6 +110,6 @@ public class HomeworkController {
 
 		homeworkService.update(hwVO);
 
-		return "redirect:main.do?viewName=view&hwSeq="+hwVO.getHwSeq();
+		return "redirect:main.do?viewName=view&hwSeq="+hwVO.getHwSeq()+"&fileSeq="+hwVO.getFileSeq();
 	}
 }
