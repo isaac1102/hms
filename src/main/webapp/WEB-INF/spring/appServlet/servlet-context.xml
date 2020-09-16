@@ -27,17 +27,6 @@
 		<beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
 	</beans:bean>
 
-
-<!-- 	<beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
-<!-- 		<beans:property name="exceptionMappings"> -->
-<!-- 			<beans:props> -->
-<!-- 				<beans:prop key="org.springframework.web.multipart.MaxUploadSizeExceededException"> -->
-<!-- 					homework/fileUpload_error -->
-<!-- 				</beans:prop> -->
-<!-- 			</beans:props> -->
-<!-- 		</beans:property> -->
-<!-- 	</beans:bean> -->
-
 	<beans:bean id="maxUploadSize" class="java.lang.Integer">
 <!-- 		<beans:constructor-arg value="/home/upload"/> -->
 		<beans:constructor-arg value="10485760"/>

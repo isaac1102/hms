@@ -93,6 +93,12 @@ public class MemberController {
 		return "homework/member/signupForm";
 	}
 
+	@RequestMapping(value="/member/signupForm2.do", method=RequestMethod.GET)
+	public String signupForm2(MemberVO mbVO) {
+
+		return "homework/member/signupForm2";
+	}
+
 	@RequestMapping(value="/member/signupAction.do", method=RequestMethod.POST)
 	public String signupAction(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
 
