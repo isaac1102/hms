@@ -44,6 +44,3 @@
 		</div>
 	</div>
 </div>
-<div class="btnArea">
-	<button class="formbtn fr" onclick="js_imgList('${dataView.hwSeq}');"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-</div>
