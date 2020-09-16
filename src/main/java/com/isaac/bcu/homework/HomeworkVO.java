@@ -21,4 +21,5 @@ public class HomeworkVO {
 	String viewName;
 	List<Integer> fileSeqs;
 	String teacherYn;
+	int orderNo;
 }

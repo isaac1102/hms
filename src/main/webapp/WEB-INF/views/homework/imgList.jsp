@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="topBtn">
+<div class="btnArea">
 	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
-<!-- 	<button class="formbtn fr" onclick="js_pageLoad('form');"><i class="fa fa-pencil"></i></button> -->
-	<button class="formbtn fr" onclick="js_list('${dataList[0].regId}');"><i class="fa fa-list-alt"></i></button>
+	<span class="depthIndicator">목록>${dataList[0].title}</span>
+	<button class="formbtn fr" onclick="js_list('${dataList[0].regId}');"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
 </div>
 <div class="list">
 	<c:if test="${empty dataList}">
@@ -15,7 +15,7 @@
 					<img class="card-img-top maxSize cusPoint" src="${item.fileUrl}"/>
 					<div class="imgFoot">
 						<div>
-							<span class="imgTitle" onClick="js_view(${item.hwSeq}, ${item.fileSeq});">${item.title}</span>
+							<span class="imgTitle" onClick="js_view(${item.hwSeq}, ${item.fileSeq});">${item.title} - ${item.orderNo }</span>
 						</div>
 						<div class="text-muted fr">
 							<span class="">${item.regDt}</span>
@@ -24,4 +24,7 @@
 				</div>
 			</div>
 	</c:forEach>
+</div>
+<div class="btnArea">
+	<button class="formbtn fr" onclick="js_list('${dataList[0].regId}');"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
 </div>

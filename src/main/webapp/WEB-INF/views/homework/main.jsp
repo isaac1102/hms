@@ -93,7 +93,6 @@
 				hwSeq : seq
 			},
 			success:function(data){
-				console.log(data)
 				$('.content').html(data);
 			}
 		});
@@ -228,7 +227,6 @@
 			url:'/member/logout.do',
 			method:'get',
 			success:function(data){
-				console.log(data);
 			}
 		});
 	};
