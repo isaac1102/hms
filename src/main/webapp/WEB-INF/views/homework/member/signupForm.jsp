@@ -3,7 +3,7 @@
 	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
 	<button class="formbtn fr" onclick="js_pageLoad('list');"><i class="fa fa-list-alt"></i></button>
 </div>
-<div class="formArea">
+<div class="signupformArea">
 	<form action="" class="signUpForm" method="post">
 		<input type="hidden" name="level" id="level" value="3">
 		<input type="hidden" value="n" name="teacherYn" >

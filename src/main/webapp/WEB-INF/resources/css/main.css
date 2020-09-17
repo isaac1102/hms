@@ -273,3 +273,8 @@ body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
 .top .topnav .showOutLoginId{float: right; color: white;}
 .resultMsg{display: none; color: red;}
 
+.signupformArea{
+	margin: 0 auto;
+	width: 346px;
+}
+

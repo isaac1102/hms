@@ -5,7 +5,7 @@
 	<button class="formbtn fr" onclick="js_pageLoad('list');"><i class="fa fa-list-alt"></i></button>
 </div>
 
-<div class="formArea">
+<div class="signupformArea">
 	<form action="" class="signUpForm" method="post">
 		<input type="hidden" name="level" id="level" value="3">
 		<input type="hidden" value="y" name="teacherYn" class="teacherYn">
