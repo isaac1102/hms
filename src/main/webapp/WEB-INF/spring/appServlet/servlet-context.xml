@@ -29,12 +29,12 @@
 
 	<beans:bean id="maxUploadSize" class="java.lang.Integer">
 <!-- 		<beans:constructor-arg value="/home/upload"/> -->
-		<beans:constructor-arg value="10485760"/>
+		<beans:constructor-arg value="20971520"/>
 	</beans:bean>
 
 	<beans:bean id="uploadPath" class="java.lang.String">
-<!-- 		<beans:constructor-arg value="/home/upload"/> -->
-		<beans:constructor-arg value="C:\img"/>
+		<beans:constructor-arg value="/home/upload"/>
+<!-- 		<beans:constructor-arg value="C:\img"/> -->
 	</beans:bean>
 
 	<interceptors>
