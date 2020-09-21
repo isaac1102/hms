@@ -17,10 +17,10 @@
 	<insert id="insert" parameterType="fileVO" useGeneratedKeys="true" keyProperty="fileSeq" >
 		INSERT INTO isaac_data.bcu_file(
 			FILE_PATH,  FILE_NM, FILE_URL,
-			ORDER_NO, FILE_SIZE, FILE_TYPE, HW_SEQ
+			ORDER_NO, FILE_SIZE, FILE_TYPE, HW_SEQ, ORG_FILE_NM
 		) VALUES(
 			#{filePath}, #{fileNm}, #{fileUrl},
-			#{orderNo}, #{fileSize}, #{fileType}, #{hwSeq}
+			#{orderNo}, #{fileSize}, #{fileType}, #{hwSeq}, #{orgFileNm}
 		)
 
 		<selectKey keyProperty="fileSeq" resultType="int">

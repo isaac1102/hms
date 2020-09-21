@@ -13,4 +13,5 @@ public class FileVO {
 	long fileSize;
 	String fileType;
 	int hwSeq;
+	String orgFileNm;
 }
