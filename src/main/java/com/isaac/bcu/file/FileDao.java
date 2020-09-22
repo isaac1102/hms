@@ -90,11 +90,17 @@ public class FileDao{
 	}
 
 	public String pathMaker(String uploadPath, String regId) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy\\MM\\dd");
+//		  로컬
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy\\MM\\dd");
 		Calendar cld = Calendar.getInstance();
 		String time = sdf.format(cld.getTime());
-
 		String path = uploadPath + "\\" + time + "\\" + regId+ "\\";
+
+		// 서버
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+//		Calendar cld = Calendar.getInstance();
+//		String time = sdf.format(cld.getTime());
+//		String path = uploadPath + "/" + time + "/" + regId+ "/";
 
 		return path;
 	}
@@ -103,12 +109,17 @@ public class FileDao{
 
 		String serverpath = filePath.replace(uploadPath, "");
 		// \ -> / 변경, 제일 앞의 /문자 제거
+		// 로컬
 		serverpath = serverpath.replace("\\", "/").substring(1, serverpath.length());
+
+		// 서버
+//		serverpath = serverpath.substring(1, serverpath.length());
 
 		return fileUrlForTomcat + serverpath;
 	}
 
 	public String changeFileName() {
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		Calendar cld = Calendar.getInstance();
 		String time = sdf.format(cld.getTime());

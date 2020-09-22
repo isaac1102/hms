@@ -91,15 +91,11 @@ public class HomeworkController {
 
 		hwVO.setRegId(hwVO.getRegId());
 		homeworkService.insert(hwVO);
-		boolean result = fileDao.insert(multiFileRequest, hwVO.getHwSeq());
+		boolean result = fileDao.insert(multiFileRequest, hwVO);
 
 		if ( result )
 			return "redirect:main.do?viewName=list";
 		else {
-
-			System.out.println("예외다. 예외");
-			System.out.println("예외다. 예외");
-			System.out.println("예외다. 예외");
 			System.out.println("예외다. 예외");
 			return "";
 		}

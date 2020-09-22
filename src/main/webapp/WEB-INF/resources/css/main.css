@@ -3,6 +3,7 @@
 html, body{height: 100%;}
 
 body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
+div {word-break: break-all;}
 
 .top{
 	position: fixed;width: 100%;z-index: 1;
@@ -267,7 +268,7 @@ body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
 .tr{text-align: right;}
 
 /* 상세보기 */
-#replyContent{white-space: pre;}
+#replyContent{}
 .replyBtnCaller{
     padding-bottom: 50px;
 }
