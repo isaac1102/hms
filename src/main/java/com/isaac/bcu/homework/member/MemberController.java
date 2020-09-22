@@ -29,7 +29,7 @@ public class MemberController {
 		return "homework/member/loginForm";
 	}
 
-	@RequestMapping(value="/member/sso/loginAction.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminLogin.do", method=RequestMethod.GET)
 	public String ssologinAction(HttpServletRequest request, ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
 
 		HttpSession session = request.getSession();
