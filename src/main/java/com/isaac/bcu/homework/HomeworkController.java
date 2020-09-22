@@ -96,7 +96,6 @@ public class HomeworkController {
 		if ( result )
 			return "redirect:main.do?viewName=list";
 		else {
-			System.out.println("예외다. 예외");
 			return "";
 		}
 	}

@@ -52,7 +52,6 @@ public class MemberDao {
 	}
 
 	public List<MemberVO> list(MemberVO mbVO) {
-		System.out.println(mbVO);
 		return sqlSession.selectList("_member.list", mbVO);
 	}
 }

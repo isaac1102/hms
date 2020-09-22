@@ -9,7 +9,7 @@
 				A.TITLE       AS title,
 				A.REG_DT      AS regDt,
 				CONCAT(B.FILE_PATH , B.FILE_NM) AS filePath,
-				CONCAT(B.FILE_URL, B.FILE_NM, B.file_type )  AS fileUrl,
+				CONCAT(B.FILE_URL, B.FILE_NM)  AS fileUrl,
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt,

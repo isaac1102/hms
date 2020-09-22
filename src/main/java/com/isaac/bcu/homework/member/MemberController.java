@@ -29,9 +29,8 @@ public class MemberController {
 		return "homework/member/loginForm";
 	}
 
-	@ResponseBody
-	@RequestMapping(value="/member/sso/loginAction.do", method=RequestMethod.POST)
-	public MemberVO ssologinAction(HttpServletRequest request, ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
+	@RequestMapping(value="/member/sso/loginAction.do", method=RequestMethod.GET)
+	public String ssologinAction(HttpServletRequest request, ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
 
 		HttpSession session = request.getSession();
 
@@ -41,7 +40,7 @@ public class MemberController {
 		session.setAttribute("loginInfo", loginInfo);
 		model.addAttribute("loginInfo", loginInfo);
 
-		return mbVO;
+		return "redirect:/homework/main.do";
 	}
 
 	@ResponseBody
