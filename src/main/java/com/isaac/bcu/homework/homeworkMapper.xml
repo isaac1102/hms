@@ -13,12 +13,15 @@
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt,
-				B.ORDER_NO    AS orderNo
+				B.ORDER_NO    AS orderNo,
+				IF(REPLY IS NULL, 'n', 'y') replyYn,
+			    COUNT(B.FILE_SEQ ) AS cnt
 		   FROM isaac_data.bcu_homework A,
 		        isaac_data.bcu_file B
 	      WHERE A.HW_SEQ = B.HW_SEQ
 	        AND REG_ID = #{regId}
-	        AND B.ORDER_NO = 1
+	      GROUP BY A.HW_SEQ
+<!-- 	        AND B.ORDER_NO = 1 -->
 	      ORDER BY A.HW_SEQ DESC
 	</select>
 

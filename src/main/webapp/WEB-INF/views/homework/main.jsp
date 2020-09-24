@@ -41,6 +41,17 @@
 	    history.go(1);
 	};
 
+
+	function js_mouseOnImg(me){
+		var deleteMark = $(me).children()[0];
+		$(deleteMark).css('display', 'block');
+	}
+
+	function js_mouseOutImg(me){
+		var deleteMark = $(me).children()[0];
+		$(deleteMark).css('display', 'none');
+	}
+
 	$(document).ready(function(){
 
 		var hwSeq = '${hwVO.hwSeq}';
@@ -51,7 +62,7 @@
 			memberListUp('${loginInfo.userId}');
 		}
 
-		if( hwSeq !== '0' ){
+		if( hwSeq !== '0' && hwSeq !== ""){
 			js_view(hwSeq, fileSeq);
 			return false;
 		}
@@ -309,7 +320,17 @@
 
 	var sizeToMb = function(size){
 		return Math.ceil((size / 1024 )/ 1024);
+	};
+
+
+	var js_delete = function(){
+		if(confirm('삭제하시겠습니까?')){
+			alert('기능 추가 중에 있습니다...')
+			return false;
+		}
 	}
+
+
 </script>
 
 </body>

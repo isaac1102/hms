@@ -13,11 +13,15 @@
 	</c:if>
 	<c:forEach var="item" items="${dataList}">
 		<div class="col-md-4 pb15">
-			<div class="card box-shadow" onClick="js_imgList(${item.hwSeq});">
-				<img class="card-img-top maxSize cusPoint" src="${item.fileUrl }"/>
+			<div class="card box-shadow" id="imgBox"  ${loginInfo.teacherYn == 'y' ? 'onmouseover="js_mouseOnImg(this);" onmouseout="js_mouseOutImg(this);" ' : ''}  >
+				<c:if test="${loginInfo.teacherYn == 'y' }">
+					<div class="deleteMark" onclick="js_delete();" ><i class="fa fa-times" aria-hidden="true"></i></div>
+				</c:if>
+				<img class="card-img-top maxSize cusPoint" src="${item.fileUrl}" onClick="js_imgList(${item.hwSeq});" />
 				<div class="imgFoot">
 					<div>
-						<span class="imgTitle" onClick="js_imgList(${item.hwSeq});">${item.title}</span>
+						<span class="imgTitle" onClick="js_imgList(${item.hwSeq});">${item.title}(${item.cnt})</span>
+						<span class="replyYn fr">${item.replyYn == 'y' ? 'Answered' : ''}</span>
 					</div>
 					<div class="text-muted fr">
 						<span class="">${item.regDt}</span>
