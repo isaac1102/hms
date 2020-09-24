@@ -281,3 +281,20 @@ div {word-break: break-all;}
 	width: 346px;
 }
 
+.replyYn{
+	color:orange;
+}
+
+#imgBox{
+	position: relative;
+}
+
+.deleteMark{
+	cursor: pointer;
+	display: none;
+	position: absolute;
+    right: 12px;
+    top: 10px;
+    font-size: 27px;
+    color: #80808087;
+}
