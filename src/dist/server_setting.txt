@@ -1,0 +1,99 @@
+sudo apt-get install openjdk-11-jre
+sudo apt-get install mysql-server
+sudo apt-get install tomcat8
+
+mysql 	3. 외부접속 허용 설정
+sudo su
+cd /etc/mysql/mysql.conf.d
+vi mysqld.cnf
+bind-address 값을 0.0.0.0 으로 수정
+
+ec2 보안규칙 설정
+db생성
+create user 'id'@'%' identified by 'password';
+grant all privileges on *.* to root@'%' identified by '루트계정 비밀번호'; 
+
+
+mysql 인코딩 설정
+/etc/mysql/my.cnf 파일 변경하기
+아래 내용 추가
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+
+
+후에 
+ALTER DATABASE [DB명] DEFAULT CHARACTER SET utf8;
+
+
+현재 Character-Set 확인하기
+show variables like ‘c%’
+status
+
+service mysql restart
+
+create database isaac_data default character set utf8;
+
+
+-- isaac_data.bcu_file definition
+
+CREATE TABLE isaac_data.bcu_file (
+  file_seq int(11) NOT NULL AUTO_INCREMENT,
+  file_path varchar(500)  NOT NULL,
+  org_file_nm varchar(100)  DEFAULT NULL,
+  file_nm varchar(200)  NOT NULL,
+  file_url varchar(200)   NOT NULL,
+  order_no int(11) DEFAULT NULL,
+  file_size int(11) DEFAULT NULL,
+  file_type varchar(10) DEFAULT NULL,
+  hw_seq varchar(100)  NOT NULL,
+  PRIMARY KEY (file_seq)
+) ;
+
+
+
+-- isaac_data.bcu_homework definition
+
+CREATE TABLE isaac_data.bcu_homework (
+  hw_seq int(11) NOT NULL AUTO_INCREMENT,
+  title varchar(200) NOT NULL,
+  reply varchar(4000) DEFAULT NULL,
+  file_seq int(11) DEFAULT NULL,
+  confirm_yn char(1)  DEFAULT NULL,
+  check_yn char(1)  DEFAULT NULL,
+  reg_dt date DEFAULT NULL,
+  modi_dt date DEFAULT NULL,
+  reg_id varchar(50) NOT NULL,
+  PRIMARY KEY (hw_seq),
+  KEY bcu_homework_file_seq_IDX (file_seq) USING BTREE
+)  ;
+
+
+
+-- isaac_data.bcu_member definition
+
+CREATE TABLE isaac_data.bcu_member (
+  user_id varchar(50)   NOT NULL,
+  user_nm varchar(50)  NOT NULL,
+  password varchar(1000)  NOT NULL,
+  klass varchar(100)  DEFAULT NULL,
+  level int(11) DEFAULT NULL,
+  Attending_Yn char(1)  DEFAULT NULL,
+  check_yn char(1)  DEFAULT NULL,
+  teacher_yn varchar(100)   NOT NULL,
+  PRIMARY KEY (user_id)
+)  ;
+
+
+tomcat8 - server.xml 설정
+<host>밑에
+ <Context docBase="/home/upload" path="/hwImg/img/" reloadable="true"/>
+ 
