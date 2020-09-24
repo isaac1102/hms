@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 public class HomeworkVO {
 
-	int hwSeq;
+	Integer hwSeq;
 	String title;
 	String reply;
-	int fileSeq;
+	Integer fileSeq;
 	String fileUrl;
 	String filePath;
 	String confirmYn;
@@ -21,5 +21,7 @@ public class HomeworkVO {
 	String viewName;
 	List<Integer> fileSeqs;
 	String teacherYn;
-	int orderNo;
+	Integer orderNo;
+	String replyYn;
+	Integer cnt;
 }
