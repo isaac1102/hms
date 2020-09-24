@@ -115,4 +115,11 @@ public class MemberController {
 		return result;
 	}
 
+	@RequestMapping(value="/favicon.ico")
+	public String faviconReq(ModelMap model, MemberVO mbVO) throws NoSuchAlgorithmException {
+
+
+		return "forward:/resources/favicon/favicon.png";
 	}
+
+}
