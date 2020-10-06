@@ -23,12 +23,11 @@
 
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="resolveLazily" value="true"/>
-		<beans:property name="maxUploadSize" value="10485760"/>    <!-- 최대 10메가 -->
-		<beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+		<beans:property name="maxUploadSize" value="20971520"/>    <!-- 최대 10메가 -->
+		<beans:property name="maxInMemorySize" value="20971520" /> <!-- 1MB -->
 	</beans:bean>
 
 	<beans:bean id="maxUploadSize" class="java.lang.Integer">
-<!-- 		<beans:constructor-arg value="/home/upload"/> -->
 		<beans:constructor-arg value="20971520"/>
 	</beans:bean>
 
