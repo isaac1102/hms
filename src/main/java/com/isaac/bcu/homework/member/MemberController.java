@@ -23,6 +23,12 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String defaultReq(HomeworkVO hwVO) {
+
+		return "redirect:/homework/main.do";
+	}
+
 	@RequestMapping(value="/member/loginForm.do", method=RequestMethod.GET)
 	public String loginForm(HomeworkVO hwVO) {
 
