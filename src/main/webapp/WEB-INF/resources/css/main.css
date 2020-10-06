@@ -3,7 +3,6 @@
 html, body{height: 100%;}
 
 body {margin: 0;font-family: Arial, Helvetica, sans-serif;}
-div {word-break: break-all;}
 
 .top{
 	position: fixed;width: 100%;z-index: 1;
@@ -298,3 +297,5 @@ div {word-break: break-all;}
     font-size: 27px;
     color: #80808087;
 }
+
+.wspw{white-space: pre-wrap;}
