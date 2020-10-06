@@ -21,7 +21,7 @@
 						<button type="button" onclick="js_replyForm();" class="btn btn-outline-secondary">답변달기</button>
 					</c:if>
 					<c:if test="${not empty dataView.reply}">
-						<div id="replyContent" class="wspw">${dataView.reply}</div>
+						<div id="replyContent" >${dataView.reply}</div>
 						<div class="text-muted ftSz15 tr">
 							${dataView.regDt}
 						</div>
