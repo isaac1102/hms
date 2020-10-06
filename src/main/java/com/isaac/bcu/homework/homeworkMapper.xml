@@ -8,20 +8,20 @@
 		        A.HW_SEQ      AS hwSeq,
 				A.TITLE       AS title,
 				A.REG_DT      AS regDt,
-				CONCAT(B.FILE_PATH , B.FILE_NM) AS filePath,
-				CONCAT(B.FILE_URL, B.FILE_NM)  AS fileUrl,
+				(SELECT CONCAT(FILE_PATH , FILE_NM) FROM isaac_data.bcu_file bf  WHERE bf.hw_seq = A.hw_seq LIMIT 1) AS filePath,
+				(SELECT CONCAT(file_url , FILE_NM) FROM isaac_data.bcu_file bf2  WHERE bf2.hw_seq = A.hw_seq LIMIT 1)   AS fileUrl,
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
+				(select user_nm from isaac_data.bcu_member bm where user_id = A.reg_id ) as regNm,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt,
-				B.ORDER_NO    AS orderNo,
+				(SELECT bf.ORDER_NO FROM isaac_data.bcu_file bf  WHERE bf.hw_seq = A.hw_seq LIMIT 1) AS orderNo,
 				IF(REPLY IS NULL, 'n', 'y') replyYn,
-			    COUNT(B.FILE_SEQ ) AS cnt
+				count(B.file_seq) AS cnt
 		   FROM isaac_data.bcu_homework A,
 		        isaac_data.bcu_file B
 	      WHERE A.HW_SEQ = B.HW_SEQ
 	        AND REG_ID = #{regId}
-	      GROUP BY A.HW_SEQ, B.FILE_SEQ
-<!-- 	        AND B.ORDER_NO = 1 -->
+	      GROUP BY A.HW_SEQ
 	      ORDER BY A.HW_SEQ DESC
 	</select>
 
@@ -35,20 +35,21 @@
 				B.FILE_SEQ AS fileSeq,
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
+				(SELECT user_nm FROM isaac_data.bcu_member bm WHERE bm.user_id = A.REG_ID ) AS regNm,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt,
 				B.ORDER_NO    AS orderNo
 		   FROM isaac_data.bcu_homework A,
 		        isaac_data.bcu_file B
 	      WHERE A.HW_SEQ = B.HW_SEQ
-	        AND A.HW_SEQ = ${hwSeq}
-	      ORDER BY A.HW_SEQ DESC
+	        AND A.HW_SEQ = #{hwSeq}
+	      ORDER BY A.HW_SEQ desc
 	</select>
 
 	<insert id="insert" parameterType="homeworkVO" >
 		INSERT INTO isaac_data.bcu_homework(
-			TITLE, REPLY, CONFIRM_YN, CHECK_YN, REG_DT, REG_ID, FILE_SEQ
+			TITLE, REG_DT, REG_ID
 		) VALUES(
-			#{title}, #{reply}, #{confirmYn}, #{checkYn}, now(), #{regId}, #{fileSeq}
+			#{title}, now(), #{regId}
 		)
 		<selectKey keyProperty="hwSeq" resultType="int">
 			SELECT LAST_INSERT_ID()
@@ -67,11 +68,12 @@
 				B.FILE_SEQ   AS fileSeq,
 				CHECK_YN AS checkYn,
 				REG_ID      AS regId,
+				(SELECT user_nm FROM isaac_data.bcu_member bm WHERE bm.user_id = A.REG_ID ) AS regNm,
 				DATE_FORMAT(reg_dt, '%Y-%m-%d') AS regDt,
 				B.ORDER_NO    AS orderNo
 		   FROM isaac_data.bcu_homework A,
 		        isaac_data.bcu_file B
-	      WHERE A.HW_SEQ = ${hwSeq}
+	      WHERE A.HW_SEQ = #{hwSeq}
 	        AND B.FILE_SEQ = #{fileSeq}
 	        AND A.HW_SEQ = B.HW_SEQ
 	</select>
