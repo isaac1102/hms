@@ -2,7 +2,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="btnArea">
 	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
-	<span class="depthIndicator">목록>${dataList[0].title}</span>
+	<span class="depthIndicator">${dataList[0].regNm}>${dataList[0].title}</span>
 	<button class="formbtn fr" onclick="js_list('${dataList[0].regId}');"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
 </div>
 <div class="list">

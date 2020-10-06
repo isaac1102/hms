@@ -2,7 +2,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="btnArea">
 	<button class="openbtn fl" id="openbtn" onclick="openNav()"><i class="fa fa-chevron-right"></i></button>
-	<span class="depthIndicator">${not empty dataList ? '목록' : ''}</span>
+	<span class="depthIndicator">${dataList[0].regNm}</span>
 	<c:if test="${loginInfo.teacherYn == 'n' }">
 		<button class="formbtn fr" onclick="js_pageLoad('form');"><i class="fa fa-pencil"></i></button>
 	</c:if>
@@ -20,7 +20,7 @@
 				<img class="card-img-top maxSize cusPoint" src="${item.fileUrl}" onClick="js_imgList(${item.hwSeq});" />
 				<div class="imgFoot">
 					<div>
-						<span class="imgTitle" onClick="js_imgList(${item.hwSeq});">${item.title}(${item.cnt})</span>
+						<span class="imgTitle" onClick="js_imgList(${item.hwSeq});">${item.title}</span>
 						<span class="replyYn fr">${item.replyYn == 'y' ? 'Answered' : ''}</span>
 					</div>
 					<div class="text-muted fr">

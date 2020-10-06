@@ -18,6 +18,7 @@ public class HomeworkVO {
 	String regDt;
 	String modiDt;
 	String regId;
+	String regNm;
 	String viewName;
 	List<Integer> fileSeqs;
 	String teacherYn;
