@@ -20,7 +20,7 @@
 		        isaac_data.bcu_file B
 	      WHERE A.HW_SEQ = B.HW_SEQ
 	        AND REG_ID = #{regId}
-	      GROUP BY A.HW_SEQ
+	      GROUP BY A.HW_SEQ, B.FILE_SEQ
 <!-- 	        AND B.ORDER_NO = 1 -->
 	      ORDER BY A.HW_SEQ DESC
 	</select>
