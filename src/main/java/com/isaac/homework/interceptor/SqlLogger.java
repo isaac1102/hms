@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 @Signature(type = StatementHandler.class, method="update",  args= { Statement.class }),
 @Signature(type=StatementHandler.class, method = "query", args= {Statement.class,  ResultHandler.class})
 })
-public class LogInterceptor implements Interceptor{
+public class SqlLogger implements Interceptor{
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override

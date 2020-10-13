@@ -10,7 +10,7 @@
 		<typeAlias alias="memberVO" type="com.isaac.bcu.homework.member.MemberVO"></typeAlias>
 	</typeAliases>
 	<plugins>
-		<plugin interceptor="com.isaac.homework.interceptor.LogInterceptor"></plugin>
+		<plugin interceptor="com.isaac.homework.interceptor.SqlLogger"></plugin>
 	</plugins>
 
 </configuration>
