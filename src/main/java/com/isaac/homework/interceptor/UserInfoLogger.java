@@ -26,17 +26,16 @@ public class UserInfoLogger implements HandlerInterceptor{
 
 	}
 
-
+//	사용안함
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object arg2) throws Exception {
         HttpSession session = req.getSession();
         MemberVO userInfo = (MemberVO) session.getAttribute("loginInfo");
 
-        logger.info("client ip : " + req.getRemoteAddr()); //접속한 사용자의 IP
+//        logger.info("client ip : " + req.getRemoteAddr()); //접속한 사용자의 IP
         if(userInfo != null) {
         	String userId = userInfo.getUserId();
         	logger.info("client id(name) : " + userId + "("+userInfo.getUserNm()+")"); //접속한 사용자의 IP
-
         }
         return true;
 	}
