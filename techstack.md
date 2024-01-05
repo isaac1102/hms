@@ -1,7 +1,8 @@
 <!--
---- Readme.md Snippet without images Start ---
+&lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
 isaac1102/hms is built on the following main stack:
+
 - [Java](https://www.java.com) – Languages
 - [MySQL](http://www.mysql.com) – Databases
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
@@ -12,11 +13,13 @@ isaac1102/hms is built on the following main stack:
 - [MyBatis](http://www.mybatis.org/mybatis-3/) – Object Relational Mapper (ORM)
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet without images End ---
 
---- Readme.md Snippet with images Start ---
+&lt;--- Readme.md Snippet without images End ---&gt;
+
+&lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
 isaac1102/hms is built on the following main stack:
+
 - <img width='25' height='25' src='https://img.stackshare.io/service/995/K85ZWV2F.png' alt='Java'/> [Java](https://www.java.com) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/1025/logo-mysql-170x170.png' alt='MySQL'/> [MySQL](http://www.mysql.com) – Databases
 - <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
@@ -27,14 +30,15 @@ isaac1102/hms is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/5582/1483254.png' alt='MyBatis'/> [MyBatis](http://www.mybatis.org/mybatis-3/) – Object Relational Mapper (ORM)
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet with images End ---
+
+&lt;--- Readme.md Snippet with images End ---&gt;
 -->
 <div align="center">
 
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [isaac1102/hms](https://github.com/isaac1102/hms)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|33<br/>Tools used|11/24/23 <br/>Report generated|
+|33<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -140,7 +144,7 @@ Full tech stack [here](/techstack.md)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
-|[ch.qos.logback:logback-classic](http://logback.qos.ch)|v1.2.3|07/30/20|hitman1439 |EPL-1.0,LGPL-2.1+|N/A|
+|[ch.qos.logback:logback-classic](http://logback.qos.ch)|v1.2.3|07/30/20|hitman1439 |EPL-1.0,LGPL-2.1+|[CVE-2023-6378](https://github.com/advisories/GHSA-vmq6-5m68-f53m) (High)|
 |[com.google.code.gson:gson](https://github.com/google/gson)|v2.8.5|09/13/20|hitman1439 |Apache-2.0|[CVE-2022-25647](https://github.com/advisories/GHSA-4jrv-ppp4-jm57) (High)|
 |[commons-dbcp:commons-dbcp](http://commons.apache.org/dbcp/)|v1.4|07/30/20|hitman1439 |Apache-2.0|N/A|
 |[commons-fileupload:commons-fileupload](http://commons.apache.org/proper/commons-fileupload/)|v1.4|07/30/20|hitman1439 |Apache-2.0|[CVE-2023-24998](https://github.com/advisories/GHSA-hfrx-6qgj-fp6c) (High)|
