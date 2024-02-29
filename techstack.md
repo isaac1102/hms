@@ -4,13 +4,13 @@
 isaac1102/hms is built on the following main stack:
 
 - [Java](https://www.java.com) – Languages
-- [MySQL](http://www.mysql.com) – Databases
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
+- [MyBatis](http://www.mybatis.org/mybatis-3/) – Object Relational Mapper (ORM)
+- [MySQL](http://www.mysql.com) – Databases
 - [JUnit](http://junit.org/) – Testing Frameworks
 - [Log4j](https://logging.apache.org/log4j/2.x/) – Logging Tools
-- [SLF4J](http://slf4j.org/) – Log Management
 - [Logback](https://logback.qos.ch/) – Log Management
-- [MyBatis](http://www.mybatis.org/mybatis-3/) – Object Relational Mapper (ORM)
+- [SLF4J](http://slf4j.org/) – Log Management
 
 Full tech stack [here](/techstack.md)
 
@@ -21,13 +21,13 @@ Full tech stack [here](/techstack.md)
 isaac1102/hms is built on the following main stack:
 
 - <img width='25' height='25' src='https://img.stackshare.io/service/995/K85ZWV2F.png' alt='Java'/> [Java](https://www.java.com) – Languages
-- <img width='25' height='25' src='https://img.stackshare.io/service/1025/logo-mysql-170x170.png' alt='MySQL'/> [MySQL](http://www.mysql.com) – Databases
 - <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
+- <img width='25' height='25' src='https://img.stackshare.io/service/5582/1483254.png' alt='MyBatis'/> [MyBatis](http://www.mybatis.org/mybatis-3/) – Object Relational Mapper (ORM)
+- <img width='25' height='25' src='https://img.stackshare.io/service/1025/logo-mysql-170x170.png' alt='MySQL'/> [MySQL](http://www.mysql.com) – Databases
 - <img width='25' height='25' src='https://img.stackshare.io/service/2020/874086.png' alt='JUnit'/> [JUnit](http://junit.org/) – Testing Frameworks
 - <img width='25' height='25' src='https://img.stackshare.io/service/2804/Coralogix-log4j-integration.jpg' alt='Log4j'/> [Log4j](https://logging.apache.org/log4j/2.x/) – Logging Tools
-- <img width='25' height='25' src='https://img.stackshare.io/service/2805/05518ecaa42841e834421e9d6987b04f_400x400.png' alt='SLF4J'/> [SLF4J](http://slf4j.org/) – Log Management
 - <img width='25' height='25' src='https://img.stackshare.io/service/2923/05518ecaa42841e834421e9d6987b04f_400x400.png' alt='Logback'/> [Logback](https://logback.qos.ch/) – Log Management
-- <img width='25' height='25' src='https://img.stackshare.io/service/5582/1483254.png' alt='MyBatis'/> [MyBatis](http://www.mybatis.org/mybatis-3/) – Object Relational Mapper (ORM)
+- <img width='25' height='25' src='https://img.stackshare.io/service/2805/05518ecaa42841e834421e9d6987b04f_400x400.png' alt='SLF4J'/> [SLF4J](http://slf4j.org/) – Log Management
 
 Full tech stack [here](/techstack.md)
 
@@ -38,7 +38,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [isaac1102/hms](https://github.com/isaac1102/hms)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|33<br/>Tools used|01/05/24 <br/>Report generated|
+|33<br/>Tools used|02/29/24 <br/>Report generated|
 |------|------|
 </div>
 
